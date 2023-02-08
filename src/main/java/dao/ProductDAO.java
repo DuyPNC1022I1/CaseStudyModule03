@@ -1,13 +1,14 @@
-package service.dao;
+package dao;
 
 import model.Product;
-import service.impl.Crud;
+import service.Crud;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDAO implements Crud<Product> {
+    private BrandDAO brandDAO;
     private String jdbcUrl = "jdbc:mysql://localhost:3306/case_module03?useSSL=false";
     private String jdbcUsername = "root";
     private String jdbcPassword = "123456";
@@ -60,4 +61,5 @@ public class ProductDAO implements Crud<Product> {
     public void delete(int id) {
 
     }
+
 }
