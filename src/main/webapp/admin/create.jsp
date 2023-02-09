@@ -25,7 +25,7 @@
   <label>Image</label>
   <input type="text" name="image" placeholder="link image"><br>
   <label>Brand</label>
-  <select>
+  <select name="brand">
     <c:forEach items="${requestScope['brands']}" var="brand">
       <option>${brand.getName()}</option>
     </c:forEach>
