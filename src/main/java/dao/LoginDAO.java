@@ -10,7 +10,7 @@ public class LoginDAO {
     protected Connection getConnection() throws ClassNotFoundException, SQLException {
         Connection connection = null;
         Class.forName("com.mysql.jdbc.Driver");
-        connection = DriverManager.getConnection(jdbcUrl, jdbcUsername, jdbcPassword);
+        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/case_module03?useSSL=false", "root", "123456");
         return connection;
     }
     public Account checkLogin(String user,String pass){
