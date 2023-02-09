@@ -1,10 +1,14 @@
 package controller;
 
+<<<<<<< HEAD
 import dao.BrandDAO;
 import dao.ProductDAO;
 import model.Brand;
 import model.Product;
 
+=======
+import service.dao.ProductDAO;
+>>>>>>> 9427130dfe938dd3033c3929690097a4c6d6ad5f
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -13,6 +17,7 @@ import java.util.List;
 
 @WebServlet(name = "AdminServlet", value = "/admin")
 public class AdminServlet extends HttpServlet {
+<<<<<<< HEAD
 
     ProductDAO productDAO;
     BrandDAO brandDAO;
@@ -23,12 +28,16 @@ public class AdminServlet extends HttpServlet {
         this.brandDAO = new BrandDAO();
     }
 
+=======
+    private ProductDAO productService;
+>>>>>>> 9427130dfe938dd3033c3929690097a4c6d6ad5f
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
         }
+<<<<<<< HEAD
         switch (action) {
             case "showCreate":
                 showCreatForm(request, response);
@@ -41,6 +50,9 @@ public class AdminServlet extends HttpServlet {
                 display(request, response);
                 break;
         }
+=======
+
+>>>>>>> 9427130dfe938dd3033c3929690097a4c6d6ad5f
     }
 
     @Override
