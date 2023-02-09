@@ -1,7 +1,5 @@
 package controller;
 
-import service.dao.ProductService;
-
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
