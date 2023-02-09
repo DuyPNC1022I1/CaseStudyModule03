@@ -32,7 +32,8 @@ public class AdminServlet extends HttpServlet {
             case "showCreate":
                 showCreatForm(request, response);
                 break;
-            case "update":
+            case "showUpdate":
+                showUpdate(request, response);
                 break;
             case "delete":
                 break;
@@ -51,6 +52,9 @@ public class AdminServlet extends HttpServlet {
         switch (action) {
             case "create":
                 createProduct(request, response);
+                break;
+            case "update":
+                update(request, response);
                 break;
             default:
                 break;
@@ -78,4 +82,29 @@ public class AdminServlet extends HttpServlet {
 
         productDAO.create(new Product(name, price, quantity, description, image, brandDAO.selectByName(brand)));
     }
+
+    private void showUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Product product = productDAO.selectById(id);
+        request.setAttribute("product", product);
+        request.setAttribute("brands", brandDAO.display());
+        RequestDispatcher rd = request.getRequestDispatcher("admin/update.jsp");
+        rd.forward(request, response);
+    }
+
+    private void update(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        double price = Double.parseDouble(request.getParameter("price"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        String description = request.getParameter("description");
+        String image = request.getParameter("image");
+        String brand = request.getParameter("brand");
+
+        productDAO.update(new Product(id, name, price, quantity, description, image, brandDAO.selectByName(brand)));
+        response.sendRedirect("/admin");
+    }
+
+
+
 }

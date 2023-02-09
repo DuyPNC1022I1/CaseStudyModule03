@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: THIS PC
   Date: 2/9/2023
-  Time: 12:30 AM
+  Time: 11:53 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -34,7 +34,7 @@
             <td>${product.getImage()}</td>
             <td>${product.getBrand().getName()}</td>
             <td>
-                <a href="admin?action=showCreate"><button>Create new</button></a>
+                <a href="/admin?action=showCreate"><button>Create new</button></a>
             </td>
             <td>
                 <a href="/admin?action=showUpdate&id=${product.getId()}"><button>Edit</button></a>
