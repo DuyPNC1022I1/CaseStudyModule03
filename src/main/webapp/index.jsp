@@ -5,6 +5,6 @@
     <title>Start</title>
 </head>
 <body>
-<a href="server"><button>Enter to home page</button></a>
+<a href="admin"><button>Enter to home page</button></a>
 </body>
 </html>

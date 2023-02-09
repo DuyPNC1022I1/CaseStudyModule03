@@ -3,19 +3,12 @@ package model;
 public class Brand {
     private int id;
     private String name;
-    boolean status;
     public Brand() {
     }
 
-    public Brand(String name, boolean status) {
-        this.name = name;
-        this.status = status;
-    }
-
-    public Brand(int id, String name, boolean status) {
+    public Brand(int id, String name) {
         this.id = id;
         this.name = name;
-        this.status = status;
     }
 
     public int getId() {
@@ -34,20 +27,12 @@ public class Brand {
         this.name = name;
     }
 
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
 
     @Override
     public String toString() {
         return "Brand{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", status=" + status +
                 '}';
     }
 }
