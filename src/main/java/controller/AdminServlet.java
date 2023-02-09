@@ -1,5 +1,4 @@
 package controller;
-
 import dao.BrandDAO;
 import dao.ProductDAO;
 import model.Product;
@@ -12,17 +11,13 @@ import java.util.List;
 
 @WebServlet(name = "AdminServlet", value = "/admin")
 public class AdminServlet extends HttpServlet {
-
     ProductDAO productDAO;
     BrandDAO brandDAO;
-
     @Override
     public void init() {
         this.productDAO = new ProductDAO();
         this.brandDAO = new BrandDAO();
     }
-
-    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         if (action == null) {
