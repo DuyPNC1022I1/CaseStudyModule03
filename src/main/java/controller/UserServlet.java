@@ -2,6 +2,7 @@ package controller;
 
 import dao.BrandDAO;
 import dao.ProductDAO;
+import model.Brand;
 import model.Product;
 
 import javax.servlet.*;
