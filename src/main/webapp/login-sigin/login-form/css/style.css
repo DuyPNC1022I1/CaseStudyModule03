@@ -296,7 +296,7 @@ span.sin-color {
 }
 .strip-left input.user {
 /*-- agileits --*/
- background:url(../images/user.png)no-repeat 10px 9px #FBFBFB;
+ background:url(../images/m.png)no-repeat 10px 9px #FBFBFB;
   display: block;
 }
 
@@ -313,7 +313,7 @@ span.sin-color {
 	background:#eeeeee;
 }
 .strip-left input.lock {
-   background: url(../images/lock.png)no-repeat 10px 10px #FBFBFB;
+   background: url(../images/l.png)no-repeat 10px 10px #FBFBFB;
   display: block;
 }
 .strip-left {
@@ -378,12 +378,12 @@ span.sin-color {
 .strip-left ul.botm-strip-icon li {
   display: inline-block;
 }
-.strip-left ul.botm-strip-icon li a {
-  background: url(../images/sprite.png)no-repeat;
-  width: 20px;
-  height: 25px;
-  display: block;
-}
+/*.strip-left ul.botm-strip-icon li a {*/
+/*  background: url(../images/sprite.png)no-repeat;*/
+/*  width: 20px;*/
+/*  height: 25px;*/
+/*  display: block;*/
+/*}*/
 .strip-left ul.botm-strip-icon li a.f {
   background-position: 0px 0px;
    transition: 0.5s all;

@@ -4,7 +4,8 @@
 <head>
 <script src="js/jquery.min.js"></script>
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 <meta name="keywords" content="Classy Login form Responsive, Login form web template, Sign up Web Templates, Flat Web Templates, Login signup Responsive web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
@@ -31,7 +32,6 @@
 						 </div>
 						<div class="clear"> </div>
 					  </div>
-					   
 						<input type="submit" value="Login">
 						 <input type="submit" value="create">
 					</form>	

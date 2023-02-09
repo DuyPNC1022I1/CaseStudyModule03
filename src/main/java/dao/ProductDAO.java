@@ -24,7 +24,6 @@ public class ProductDAO implements Crud<Product> {
         connection = DriverManager.getConnection(jdbcUrl, jdbcUsername, jdbcPassword);
         return connection;
     }
-
     @Override
     public List<Product> display() {
         List<Product> products = new ArrayList<>();
@@ -50,9 +49,6 @@ public class ProductDAO implements Crud<Product> {
         }
         return products;
     }
-
-
-
     @Override
     public void create(Product product) {
         try {
