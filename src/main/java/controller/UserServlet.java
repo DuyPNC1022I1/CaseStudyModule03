@@ -19,6 +19,7 @@ public class UserServlet extends HttpServlet {
     @Override
     public void init() {
         this.productDAO = new ProductDAO();
+        this.brandDAO = new BrandDAO<>();
     }
 
     @Override
