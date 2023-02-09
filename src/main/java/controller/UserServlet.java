@@ -2,7 +2,6 @@ package controller;
 
 import dao.BrandDAO;
 import dao.ProductDAO;
-import model.Brand;
 import model.Product;
 
 import javax.servlet.*;
@@ -15,10 +14,10 @@ import java.util.List;
 public class UserServlet extends HttpServlet {
     private ProductDAO productDAO;
     private BrandDAO brandDAO;
+
     @Override
     public void init() {
         this.productDAO = new ProductDAO();
-        this.brandDAO = new BrandDAO<>();
     }
 
     @Override
@@ -32,15 +31,8 @@ public class UserServlet extends HttpServlet {
                 break;
             case "buy":
                 break;
-            case "login":
-                showLogin(request, response);
-                break;
-            case "createAcount":
-                showCreateAcount(request, response);
-                break;
             default:
-//                display(request, response);
-                showProduct(request, response);
+                display(request, response);
                 break;
         }
     }
@@ -66,26 +58,25 @@ public class UserServlet extends HttpServlet {
         rd.forward(request, response);
     }
 
-    private void showProduct(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    private void showProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Product> products =  this.productDAO.display();
         request.setAttribute("products", products);
         RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+        showBrand(request);
         rd.forward(request, response);
-        showBrand(request, response);
     }
 
-    private void showBrand(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        List<Brand> brands =  this.brandDAO.display();
+    private void showBrand(HttpServletRequest request) throws ServletException, IOException {
+        List<Brand> brands = this.brandDAO.display();
         request.setAttribute("brands", brands);
         RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-        rd.forward(request, response);
     }
 
-    private void showLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void showLogin(HttpServletResponse response) throws IOException {
         response.sendRedirect("login/login-form/login.jsp");
     }
 
-    private void showCreateAcount(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.sendRedirect("admin/create.jsp");
+    private void showCreateAcount(HttpServletResponse response) throws IOException {
+        response.sendRedirect("");
     }
 }
