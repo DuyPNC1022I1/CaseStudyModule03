@@ -19,6 +19,7 @@ public class UserServlet extends HttpServlet {
     @Override
     public void init() {
         this.productDAO = new ProductDAO();
+        this.brandDAO = new BrandDAO<>();
     }
 
     @Override
@@ -30,10 +31,15 @@ public class UserServlet extends HttpServlet {
         switch (action) {
             case "view":
                 break;
+            case "createAcount":
+                break;
             case "buy":
                 break;
+            case "login":
+                showLogin(response);
+                break;
             default:
-                display(request, response);
+                showProduct(request, response);
                 break;
         }
     }
@@ -50,13 +56,6 @@ public class UserServlet extends HttpServlet {
             default:
                 break;
         }
-    }
-
-    private void display(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        List<Product> products =  this.productDAO.display();
-        request.setAttribute("products", products);
-        RequestDispatcher rd = request.getRequestDispatcher("user/display.jsp");
-        rd.forward(request, response);
     }
 
     private void showProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
