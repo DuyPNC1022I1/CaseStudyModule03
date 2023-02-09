@@ -36,6 +36,7 @@ public class AdminServlet extends HttpServlet {
                 showUpdate(request, response);
                 break;
             case "delete":
+                delete(request, response);
                 break;
             default:
                 display(request, response);
@@ -104,6 +105,14 @@ public class AdminServlet extends HttpServlet {
         productDAO.update(new Product(id, name, price, quantity, description, image, brandDAO.selectByName(brand)));
         response.sendRedirect("/admin");
     }
+
+    private void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        productDAO.delete(id);
+        response.sendRedirect("/admin");
+    }
+
+
 
 
 
