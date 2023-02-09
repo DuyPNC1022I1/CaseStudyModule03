@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -49,8 +50,8 @@
                         </div>
                         <div class="col l-4 header-top__right-item">
                             <div class="header__container">
-                                <a href="" class="header-top__right-login">Đăng Nhập</a>
-                                <a href="" class="header-top__right-register">Đăng Kí</a>
+                                <a href="/user?action=login" class="header-top__right-login">Đăng Nhập</a>
+                                <a href="/user?action=createAcount" class="header-top__right-register">Đăng Kí</a>
                             </div>
                         </div>
                     </div>
@@ -63,9 +64,11 @@
                     <ul class="header-botom__item-menu">
 
                         <!-- Phần lấy hãng đồng hồ -->
-                        <li class="menu-item">
-                            <a class="menu-item__link" href="">Đồng hồ Philippe Auguste</a>
-                        </li>
+                        <c:forEach items="${brands}" var="b">
+                            <li class="menu-item">
+                                <a class="menu-item__link" href="#">${b.getName()}</a>
+                            </li>
+                        </c:forEach>
 
                     </ul>
                 </div>
@@ -73,16 +76,16 @@
                     <div class="header__navbar">
                         <div class="row">
                             <div class="col l-3 header__navbar-item">
-                                <a href="" class="header__navbar-link">Giới thiệu</a>
+                                <a href="#" class="header__navbar-link">Giới thiệu</a>
                             </div>
                             <div class="col l-3 header__navbar-item">
-                                <a href="" class="header__navbar-link">Chính sách bảo mật</a>
+                                <a href="#" class="header__navbar-link">Chính sách bảo mật</a>
                             </div>
                             <div class="col l-3 header__navbar-item">
-                                <a href="" class="header__navbar-link">Chính sách bảo hành</a>
+                                <a href="#" class="header__navbar-link">Chính sách bảo hành</a>
                             </div>
                             <div class="col l-3 header__navbar-item">
-                                <a href="" class="header__navbar-link">Tin tức sự kiện</a>
+                                <a href="#" class="header__navbar-link">Tin tức sự kiện</a>
                             </div>
                         </div>
                     </div>
@@ -114,22 +117,12 @@
                             Theo Hãng:
                         </p>
                         <ul class="filter__category-list">
-                            <li class="filter__category-item">
-                                <input class="filter__category-item-check" type="checkbox" name="" value="">
-                                <p>Philippe Auguste</p>
-                            </li>
-                            <li class="filter__category-item">
-                                <input class="filter__category-item-check" type="checkbox" name="" value="">
-                                <p>Atlantic Swiss</p>
-                            </li>
-                            <li class="filter__category-item">
-                                <input class="filter__category-item-check" type="checkbox" name="" value="">
-                                <p>Diamond D</p>
-                            </li>
-                            <li class="filter__category-item">
-                                <input class="filter__category-item-check" type="checkbox" name="" value="">
-                                <p>Epos Swiss</p>
-                            </li>
+                            <c:forEach items="${brands}" var="brand">
+                                <li class="filter__category-item">
+                                    <input class="filter__category-item-check" type="checkbox" name="" value="${brand.getId()}">
+                                    <p>${brand.getName()}</p>
+                                </li>
+                            </c:forEach>
                         </ul>
                     </div>
                     <div class="filter__category">
@@ -155,14 +148,14 @@
                     <div class="row content__container-nav">
                         <div class="col l-3">
                             <div class="content__container-nav-item">
-                                <a class="content__container-nav-link" href="">
+                                <a class="content__container-nav-link" href="#">
                                     <img src="./assets/img/category/atlantic/at_logo.png" alt="">
                                 </a>
                             </div>
                         </div>
                         <div class="col l-3">
                             <div class="content__container-nav-item">
-                                <a class="content__container-nav-link" href="">
+                                <a class="content__container-nav-link" href="#">
                                     <img src="./assets/img/category/diamond/dm_logo.png" alt="">
                                 </a>
                             </div>
@@ -176,7 +169,7 @@
                         </div>
                         <div class="col l-3">
                             <div class="content__container-nav-item">
-                                <a class="content__container-nav-link" href="">
+                                <a class="content__container-nav-link" href="#">
                                     <img src="./assets/img/category/philippe-auguste/pa_logo.png" alt="">
                                 </a>
                             </div>
@@ -201,22 +194,26 @@
 
                         <!-- DANH SÁCH SẢN PHẨM -->
                         <!-- phần truyền database Product -->
-                        <div class="col l-3">
-                            <div class="product-container">
-                                <div class="product-container__img">
-                                    <img class="product-img" src="./assets/img/category/atlantic/1462484998_dong-ho-thuy-sy-phien-ban-gioi-han9.jpg" alt="">
-                                </div>
-                                <div class="product-content">
-                                    <h3 class="product-content__name">Đồng hồ Atlantic Swiss AT-52851.44.25</h3>
-                                    <p class="product-content__desc">Size mặt 40mm - Kính cứng</p>
-                                    <div class="product-content__container-price">
-                                        Giá:
-                                        <p class="product-content__price">130.000.000đ</p>
+                        <c:forEach items="${products}" var="p">
+                            <div class="col l-3">
+                                <div class="product-container">
+                                    <div class="product-container__img">
+                                        <img class="product-img"
+                                             src="./assets/img/category/atlantic/1462484998_dong-ho-thuy-sy-phien-ban-gioi-han9.jpg"
+                                             alt="">
                                     </div>
-                                    <div class="product-content__status">Sẵn sàng</div>
+                                    <div class="product-content">
+                                        <h3 class="product-content__name">${p.getName()}</h3>
+                                        <p class="product-content__desc">${p.getDescription()}</p>
+                                        <div class="product-content__container-price">
+                                            Giá:
+                                            <p class="product-content__price">${p.getPrice()}</p>
+                                        </div>
+                                        <div class="product-content__status">Còn hàng</div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </c:forEach>
                     </div>
                 </div>
             </div>

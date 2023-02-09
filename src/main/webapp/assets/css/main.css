@@ -23,6 +23,10 @@
     position: relative;
 }
 
+.header-search__form {
+    width: 100%;
+}
+
 .input-search {
     outline: none;
     margin: auto;
@@ -86,11 +90,9 @@
     position: absolute;
     height: 14px;
     border: 1px solid;
-    top: 0px;
+    top: 0;
     right: 56px;
 }
-
-
 
 .header-top__right-login, 
 .header-top__right-register {
