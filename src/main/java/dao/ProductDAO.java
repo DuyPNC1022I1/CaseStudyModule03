@@ -25,6 +25,7 @@ public class ProductDAO implements Crud<Product> {
         return connection;
     }
 
+
     @Override
     public List<Product> display() {
         List<Product> products = new ArrayList<>();
