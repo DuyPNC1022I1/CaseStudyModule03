@@ -16,7 +16,7 @@ public class LoginDAO {
     public Account checkLogin(String user,String pass){
         try {
             String query = "select * from account where username = ? and password = ?";
-            connection = new DBContext().getConnection();
+            connection = new connection.getConnection();
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1,user);
             preparedStatement.setString(2,pass);
@@ -26,8 +26,8 @@ public class LoginDAO {
                 return  account;
             }
 
-        } catch (Exception e) {
-
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return null;
     }
