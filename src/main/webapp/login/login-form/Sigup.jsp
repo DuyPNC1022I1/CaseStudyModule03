@@ -13,7 +13,7 @@
       <p style="color: white">Xin hãy nhập biểu mẫu bên dưới để đăng ký.</p>
       <hr>
       <label for="username"><b>User name</b></label>
-      <input type="text" placeholder="Nhập Email" name="name" required>
+      <input type="text" placeholder="Nhập tên đăng nhập" name="name"  required>
 
       <label for="psw"><b>Mật Khẩu</b></label>
       <input type="password" placeholder="Nhập Mật Khẩu" name="psw" required>

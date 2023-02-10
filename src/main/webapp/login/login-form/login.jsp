@@ -29,14 +29,13 @@
 								<div class="clear"> </div>
 							</div>
 							<input type="submit" value="Login">
-							<input type="submit" value="create">
+							<input type="submit" value="create" name="sigup" >
 						</form>
 						<div class="header-left-top">
 						</div>
 					</div>
 				</div>
 			</div>
-
 		</div>
 	</div>
 </div>
