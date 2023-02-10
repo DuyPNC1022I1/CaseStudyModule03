@@ -24,10 +24,10 @@
       <label for="email"><b>Email</b></label>
       <input type="text" placeholder="Nhập Email" name="email" required>
 
-      <label for="phone-number"><b>số điện thoại</b></label>
+      <label for="phone-number"><b>Số điện thoại</b></label>
       <input type="text" placeholder="Nhập số điện thoại" name="phone" required>
 
-      <label for="address"><b>địa chỉ </b></label>
+      <label for="address"><b>Địa chỉ </b></label>
       <input type="text" placeholder="Nhập địa chỉ" name="address" required>
       <label>
         <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Nhớ Đăng Nhập
