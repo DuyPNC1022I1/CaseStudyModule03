@@ -26,8 +26,6 @@ public class AccountDAO  {
             throw new RuntimeException(e);
         }
     }
-
-
     public void update(Account account) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_ACCOUNT)) {
             preparedStatement.setString(2 , account.getPass());
