@@ -34,10 +34,10 @@
             <td>${product.getImage()}</td>
             <td>${product.getBrand().getName()}</td>
             <td>
-                <a href="admin/create.jsp"><button>Create new</button></a>
+                <a href="admin?action=showCreate"><button>Create new</button></a>
             </td>
             <td>
-                <a href="/admin?action=update&id=${product.getId()}"><button>Edit</button></a>
+                <a href="/admin?action=showUpdate&id=${product.getId()}"><button>Edit</button></a>
             </td>
             <td>
                 <a href="/admin?action=delete&id=${product.getId()}"><button>Delete</button></a>
