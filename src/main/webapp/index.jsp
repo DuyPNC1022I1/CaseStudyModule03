@@ -222,7 +222,7 @@
                         </c:forEach>
 
                         <%--Hiển thị sản phẩm tìm kiếm--%>
-                        <c:forEach items="${productsSearchByName}" var="p">
+                        <c:forEach items="${productsByName}" var="p">
                             <div class="col l-3">
                                 <div class="product-container">
                                     <div class="product-container__img">
