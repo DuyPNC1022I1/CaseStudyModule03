@@ -56,6 +56,12 @@ public class UserServlet extends HttpServlet {
             case "searchName":
                 searchByName(request, response);
                 break;
+            case "searchByBrand":
+                searchByBrand(request, response);
+                break;
+            case "searchPrice":
+                searchByPrice(request, response);
+                break;
             default:
                 showProduct(request, response);
                 break;
@@ -125,8 +131,21 @@ public class UserServlet extends HttpServlet {
     }
 
     //Tìm + Hiển thị sản phẩm theo giá tiền
-    private void searchByPrice(HttpServletRequest request, HttpServletResponse response) {
-
+    private void searchByPrice(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        double lowerPrice = Double.parseDouble(request.getParameter("lowerPrice"));
+        double upperPrice = Double.parseDouble(request.getParameter("upperPrice"));
+        List<Product> products = new ArrayList<>();
+        boolean flag = false;
+        for (int i = 0; i < productDAO.display().size(); i++) {
+            if ((productDAO.display().get(i).getPrice() >= lowerPrice) && (productDAO.display().get(i).getPrice() <= upperPrice)) {
+                products.add(productDAO.display().get(i));
+                flag = true;
+            }
+        }
+        request.setAttribute("flag", flag);
+        request.setAttribute("products", products);
+        RequestDispatcher rd = request.getRequestDispatcher("user/displaySearch.jsp");
+        rd.forward(request, response);
     }
 
 }
