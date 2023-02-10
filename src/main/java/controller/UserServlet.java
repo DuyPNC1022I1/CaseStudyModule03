@@ -33,7 +33,7 @@ public class UserServlet extends HttpServlet {
             case "view":
                 break;
             case "createAccount":
-                showCreateAcount(response);
+                showCreateAccount(response);
                 break;
             case "buy":
                 break;
