@@ -129,7 +129,7 @@ public class UserServlet extends HttpServlet {
         //Tạo list products chứa các product có trường brand tương ứng
         List<Product> productsByBrand = new ArrayList<>();
 
-        //Tạo flag. Flad = true nếu tìm thấy sản phẩm có brand tương ứng
+        //Tạo flag, flag = true nếu tìm thấy sản phẩm có brand tương ứng
         boolean flag = false;
         for (int i = 0; i < productDAO.display().size(); i++) {
             if (productDAO.display().get(i).getBrand().getName().equals(brandName)) {

@@ -191,7 +191,6 @@
                             </ul>
                         </div>
                     </div>
-
                     <div class="row">
 
                         <!-- DANH SÁCH SẢN PHẨM -->
@@ -225,8 +224,7 @@
                         <c:forEach items="${productsByName}" var="p">
                             <div class="col l-3" >
                                 <div class="product-container">
-                                    <div class="product-container__img">
-                                        <img class="product-img"
+                                    <div class="product-container__img"><img class="product-img"
                                              src="./assets/img/category/atlantic/1462484998_dong-ho-thuy-sy-phien-ban-gioi-han9.jpg"
                                              alt="">
                                     </div>
