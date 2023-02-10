@@ -2,6 +2,7 @@ package controller;
 
 import dao.BrandDAO;
 import dao.ProductDAO;
+import model.Brand;
 import model.Product;
 
 import javax.servlet.*;
@@ -58,6 +59,7 @@ public class AdminServlet extends HttpServlet {
                 update(request, response);
                 break;
             default:
+                display(request, response);
                 break;
         }
     }
@@ -65,12 +67,13 @@ public class AdminServlet extends HttpServlet {
     private void display(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         List<Product> products =  this.productDAO.display();
         request.setAttribute("products", products);
-        RequestDispatcher rd = request.getRequestDispatcher("admin/display.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("admin.jsp");
+        showBrand(request);
         rd.forward(request, response);
     }
     private void showCreatForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         request.setAttribute("brands", brandDAO.display());
-        RequestDispatcher rd = request.getRequestDispatcher("admin/create.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("createProduct.jsp");
         rd.forward(request, response);
     }
     private void createProduct(HttpServletRequest request, HttpServletResponse response) {
@@ -89,7 +92,7 @@ public class AdminServlet extends HttpServlet {
         Product product = productDAO.selectById(id);
         request.setAttribute("product", product);
         request.setAttribute("brands", brandDAO.display());
-        RequestDispatcher rd = request.getRequestDispatcher("admin/update.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("editProduct.jsp");
         rd.forward(request, response);
     }
 
@@ -110,5 +113,11 @@ public class AdminServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         productDAO.delete(id);
         response.sendRedirect("/admin");
+    }
+
+    private void showBrand(HttpServletRequest request) {
+        List<Brand> brands = this.brandDAO.display();
+        request.setAttribute("brands", brands);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("admin.jsp");
     }
 }

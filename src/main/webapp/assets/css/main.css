@@ -535,3 +535,13 @@
     margin-top: 45px;
     color: red;
 }
+
+.product-btn__action-btn {
+    display: block;
+    background-color: #666;
+    padding: 10px 38px;
+    border-radius: 20px;
+    color: var(--white-color);
+    text-transform: uppercase;
+    text-decoration: none;
+}
