@@ -62,7 +62,7 @@ public class UserServlet extends HttpServlet {
     }
 
     private void showProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Product> products =  this.productDAO.display();
+        List<Product> products = this.productDAO.display();
         request.setAttribute("products", products);
         RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
         showBrand(request);
@@ -82,6 +82,7 @@ public class UserServlet extends HttpServlet {
     private void showCreateAcount(HttpServletResponse response) throws IOException {
         response.sendRedirect("");
     }
+
     //Tìm + Hiển thị sản phẩm theo tên
     private void searchByName(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String name = request.getParameter("searchByName");
@@ -102,8 +103,22 @@ public class UserServlet extends HttpServlet {
 
     private void searchByBrand(HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException {
-        request.setAttribute("brands", brandDAO.display());
-        RequestDispatcher rd = request.getRequestDispatcher("user/display.jsp");
+        String brandName = request.getParameter("searchByBrand");
+
+        //Tạo list products chứa các product có trường brand tương ứng
+        List<Product> products = new ArrayList<>();
+
+        //Tạo flag. Flad = true nếu tìm thấy sản phẩm có brand tương ứng
+        boolean flag = false;
+        for (int i = 0; i < productDAO.display().size(); i++) {
+            if (productDAO.display().get(i).getBrand().getName().equals(brandName)) {
+                products.add(productDAO.display().get(i));
+                flag = true;
+            }
+        }
+        request.setAttribute("flag", flag);
+        request.setAttribute("products", products);
+        RequestDispatcher rd = request.getRequestDispatcher("user/displaySearch.jsp");
         rd.forward(request, response);
     }
 
