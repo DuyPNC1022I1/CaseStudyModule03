@@ -14,7 +14,7 @@ import java.util.List;
 @WebServlet(name = "CartServlet", value = "/cart")
 public class CartServlet extends HttpServlet {
     private final IProductService iProductService = new ProductServiceImplement();
-//    private final List<Brand> brands = new BrandServiceImplement().getAll();
+    private final List<Brand> brands = new BrandServiceImplement().getAll();
 //    private final IOrderService iOrderService = new OrderServiceImplement();
 //    private final OrderDetailDAOImplement detailDAOImplement= new OrderDetailDAOImplement();
     @Override
@@ -64,12 +64,23 @@ public class CartServlet extends HttpServlet {
         }else {
             cart = (List<Item>) session.getAttribute("cart");
             boolean check = false;
-            for (Item item:cart) {
+            for (Item item : cart) {
                 if (item.getProduct().getId() == product.getId()){
                     item.setQuantity(item.getQuantity() + quantity);
                     check = true;
                 }
             }
+            if (check == false){
+                cart.add(new Item(product,quantity));
+            }
         }
+        int subtotal = 0;
+        for (Item item : cart) {
+            subtotal += item.getProduct().getPrice() * item.getQuantity();
+        }
+        session.setAttribute("subtotal", subtotal);
+        session.setAttribute("cart", cart);
+        request.setAttribute("brands", brands);
+        request.getRequestDispatcher("").forward(request, response);
     }
 }
