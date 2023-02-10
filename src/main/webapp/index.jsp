@@ -51,7 +51,7 @@
                         <div class="col l-4 header-top__right-item">
                             <div class="header__container">
                                 <a href="/user?action=login" class="header-top__right-login">Đăng Nhập</a>
-                                <a href="/user?action=createAcount" class="header-top__right-register">Đăng Kí</a>
+                                <a href="/user?action=createAccount" class="header-top__right-register">Đăng Kí</a>
                             </div>
                         </div>
                     </div>
