@@ -114,7 +114,7 @@
                         <i class="filter__header-icon fa-solid fa-filter"></i>
                         <h3>Bộ lọc tìm kiếm</h3>
                     </div>
-                    <div class="filter__category">
+                    <form action="/user?action=searchByBrand" method="post" class="filter__category">
                         <p class="filter__category-head">
                             Theo Hãng:
                         </p>
@@ -126,8 +126,9 @@
                                 </li>
                             </c:forEach>
                         </ul>
-                    </div>
-                    <div class="filter__category">
+                        <input type="submit" value="Tìm kiếm">
+                    </form>
+                    <form action="/user?action=searchPrice" method="post" class="filter__category">
                         <p class="filter__category-head">
                             Theo Khoảng Giá:
                         </p>
@@ -143,7 +144,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        <input type="submit" value="Tìm kiếm">
+                    </form>
                 </div>
 
                 <div class="col l-10 content">

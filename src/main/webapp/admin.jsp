@@ -121,19 +121,19 @@
                         <i class="filter__header-icon fa-solid fa-filter"></i>
                         <h3>Bộ lọc tìm kiếm</h3>
                     </div>
-                    <div class="filter__category">
+                    <form action="/admin?" class="filter__category">
                         <p class="filter__category-head">
                             Theo Hãng:
                         </p>
                         <ul class="filter__category-list">
                             <c:forEach items="${brands}" var="brand">
                                 <li class="filter__category-item">
-                                    <input class="filter__category-item-check" type="checkbox" name="" value="${brand.getId()}">
+                                    <input class="filter__category-item-check" type="radio" name="" value="${brand.getId()}">
                                     <p>${brand.getName()}</p>
                                 </li>
                             </c:forEach>
                         </ul>
-                    </div>
+                    </form>
                     <div class="filter__category">
                         <p class="filter__category-head">
                             Theo Khoảng Giá:
