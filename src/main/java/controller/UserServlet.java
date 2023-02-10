@@ -80,8 +80,8 @@ public class UserServlet extends HttpServlet {
         response.sendRedirect("login/login-form/login.jsp");
     }
 
-    private void showCreateAcount(HttpServletResponse response) throws IOException {
-        response.sendRedirect("");
+    private void showCreateAccount(HttpServletResponse response) throws IOException {
+        response.sendRedirect("/login/login-form/Sigup.jsp");
     }
 
     //Tìm + Hiển thị sản phẩm theo tên
