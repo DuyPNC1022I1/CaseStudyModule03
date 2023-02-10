@@ -527,3 +527,11 @@
     padding: 15px 0;
     padding-left: 40px;
 }
+
+.text-aler__search {
+    margin: auto;
+    justify-content: center;
+    font-size: 4rem;
+    margin-top: 45px;
+    color: red;
+}
