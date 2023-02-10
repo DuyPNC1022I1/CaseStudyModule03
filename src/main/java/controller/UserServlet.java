@@ -102,6 +102,7 @@ public class UserServlet extends HttpServlet {
         rd.forward(request, response);
     }
 
+    //Tìm + Hiển thị sản phẩm theo brand
     private void searchByBrand(HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException {
         String brandName = request.getParameter("searchByBrand");
@@ -123,7 +124,7 @@ public class UserServlet extends HttpServlet {
         rd.forward(request, response);
     }
 
-    //Tìm sản phẩm theo giá tiền
+    //Tìm + Hiển thị sản phẩm theo giá tiền
     private void searchByPrice(HttpServletRequest request, HttpServletResponse response) {
 
     }
