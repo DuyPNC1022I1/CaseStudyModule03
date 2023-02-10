@@ -23,7 +23,7 @@
                     <img class="header-logo__img" src="./assets/img/logo/logo1.png" alt="">
                 </div>
                 <div class="col l-5 header-search">
-                    <form class="header-search__form" action="/user?action=searchName" method="post">
+                    <form class="header-search__form" action="/user" method="post">
                         <input class="input-search" name="searchByName" type="search" placeholder="Nhập từ khoá tìm kiếm...">
                         <button class="btn-search">
                             <i class="fa-solid fa-magnifying-glass"></i>
@@ -223,7 +223,7 @@
 
                         <%--Hiển thị sản phẩm tìm kiếm--%>
                         <c:forEach items="${productsByName}" var="p">
-                            <div class="col l-3">
+                            <div class="col l-3" >
                                 <div class="product-container">
                                     <div class="product-container__img">
                                         <img class="product-img"
