@@ -32,7 +32,8 @@ public class UserServlet extends HttpServlet {
         switch (action) {
             case "view":
                 break;
-            case "createAcount":
+            case "createAccount":
+                showCreateAcount(response);
                 break;
             case "buy":
                 break;
