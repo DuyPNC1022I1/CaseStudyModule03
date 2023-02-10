@@ -11,7 +11,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tạo sản phẩm</title>
+    <title>Thêm sản phẩm</title>
     <link rel="stylesheet" href="./assets/css/base.css">
     <link rel="stylesheet" href="./assets/css/create.css">
     <link rel="stylesheet" href="./assets/font-icon/css/all.min.css">
@@ -20,10 +20,10 @@
 <body>
 <div id="main">
     <div class="modal">
-        <a class="modal-background"></a>
+        <a href="/admin" class="modal-background"></a>
         <div class="container">
-            <h1 class="container-header">Tạo Sản phẩm</h1>
-            <form class="container-form" method="post">
+            <h1 class="container-header">Thêm Sản phẩm</h1>
+            <form class="container-form" action="/admin?action=createProduct" method="post">
                 <div class="container-form__item">
                     <label class="container-form__item-label" for="name">Tên sản phẩm: </label>
                     <input class="container-form__item-input" type="text" name="name" id="name" placeholder="Nhập tên sản phẩm...">
@@ -62,7 +62,7 @@
                     <button class="btn" type="submit">Tạo</button>
                 </div>
 
-                <a href="#" class="container-form__close">
+                <a href="/admin" class="container-form__close">
                     <i class="fa-solid fa-xmark"></i>
                 </a>
             </form>
