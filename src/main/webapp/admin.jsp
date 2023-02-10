@@ -30,10 +30,12 @@
                     <img class="header-logo__img" src="./assets/img/logo/logo1.png" alt="">
                 </div>
                 <div class="col l-5 header-search">
-                    <input class="input-search" type="search" placeholder="Nhập từ khoá tìm kiếm...">
-                    <button class="btn-search">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
+                    <form class="header-search__form" action="/user?action=searchName" method="post">
+                        <input class="input-search" type="search" placeholder="Nhập từ khoá tìm kiếm...">
+                        <button class="btn-search">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </form>
                 </div>
                 <div class="col l-5">
                     <div class="row header-top__right">
