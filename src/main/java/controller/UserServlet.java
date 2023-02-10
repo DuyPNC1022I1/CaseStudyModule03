@@ -9,6 +9,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "UserServlet", value = "/user")
@@ -51,9 +52,11 @@ public class UserServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
-            case "":
+            case "searchName":
+                searchByName(request, response);
                 break;
             default:
+                showProduct(request, response);
                 break;
         }
     }
@@ -79,4 +82,34 @@ public class UserServlet extends HttpServlet {
     private void showCreateAcount(HttpServletResponse response) throws IOException {
         response.sendRedirect("");
     }
+    //Tìm + Hiển thị sản phẩm theo tên
+    private void searchByName(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String name = request.getParameter("searchByName");
+        //Tạo biến điều kiện để hiển thị kết quả
+        boolean flag = false;
+        List<Product> products = new ArrayList<>();
+        for (int i = 0; i < productDAO.display().size(); i++) {
+            if (productDAO.display().get(i).getName().toUpperCase().contains(name.toUpperCase())) {
+                products.add(productDAO.display().get(i));
+                flag = true;
+            }
+        }
+        request.setAttribute("flag", flag);
+        request.setAttribute("products", products);
+        RequestDispatcher rd = request.getRequestDispatcher("user/displaySearch.jsp");
+        rd.forward(request, response);
+    }
+
+    private void searchByBrand(HttpServletRequest request, HttpServletResponse response) throws
+            ServletException, IOException {
+        request.setAttribute("brands", brandDAO.display());
+        RequestDispatcher rd = request.getRequestDispatcher("user/display.jsp");
+        rd.forward(request, response);
+    }
+
+    //Tìm sản phẩm theo giá tiền
+    private void searchByPrice(HttpServletRequest request, HttpServletResponse response) {
+
+    }
+
 }

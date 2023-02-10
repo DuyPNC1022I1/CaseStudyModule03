@@ -42,5 +42,12 @@
     </tr>
   </c:forEach>
 </table>
+
+<%--Tim san pham theo ten--%>
+<form action="/user?action=searchName" method="post">
+  <label>Search by name</label>
+  <input  type="text" name="searchByName" placeholder="Enter name to search!">
+  <input type="submit" value="Submit">
+</form>
 </body>
 </html>

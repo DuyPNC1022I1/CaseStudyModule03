@@ -111,9 +111,4 @@ public class AdminServlet extends HttpServlet {
         productDAO.delete(id);
         response.sendRedirect("/admin");
     }
-
-
-
-
-
 }
