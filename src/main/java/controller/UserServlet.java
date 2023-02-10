@@ -95,15 +95,15 @@ public class UserServlet extends HttpServlet {
         String name = request.getParameter("searchByName");
         //Tạo biến điều kiện để hiển thị kết quả
         boolean flag = false;
-        List<Product> products = new ArrayList<>();
+        List<Product> productsByName = new ArrayList<>();
         for (int i = 0; i < productDAO.display().size(); i++) {
             if (productDAO.display().get(i).getName().toUpperCase().contains(name.toUpperCase())) {
-                products.add(productDAO.display().get(i));
+                productsByName.add(productDAO.display().get(i));
                 flag = true;
             }
         }
         request.setAttribute("flag", flag);
-        request.setAttribute("products", products);
+        request.setAttribute("productsByName", productsByName);
         RequestDispatcher rd = request.getRequestDispatcher("user/displaySearch.jsp");
         rd.forward(request, response);
     }
@@ -114,18 +114,18 @@ public class UserServlet extends HttpServlet {
         String brandName = request.getParameter("searchByBrand");
 
         //Tạo list products chứa các product có trường brand tương ứng
-        List<Product> products = new ArrayList<>();
+        List<Product> productsByBrand = new ArrayList<>();
 
         //Tạo flag. Flad = true nếu tìm thấy sản phẩm có brand tương ứng
         boolean flag = false;
         for (int i = 0; i < productDAO.display().size(); i++) {
             if (productDAO.display().get(i).getBrand().getName().equals(brandName)) {
-                products.add(productDAO.display().get(i));
+                productsByBrand.add(productDAO.display().get(i));
                 flag = true;
             }
         }
         request.setAttribute("flag", flag);
-        request.setAttribute("products", products);
+        request.setAttribute("productsByBrand", productsByBrand);
         RequestDispatcher rd = request.getRequestDispatcher("user/displaySearch.jsp");
         rd.forward(request, response);
     }
@@ -134,16 +134,16 @@ public class UserServlet extends HttpServlet {
     private void searchByPrice(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         double lowerPrice = Double.parseDouble(request.getParameter("lowerPrice"));
         double upperPrice = Double.parseDouble(request.getParameter("upperPrice"));
-        List<Product> products = new ArrayList<>();
+        List<Product> productsByPrice = new ArrayList<>();
         boolean flag = false;
         for (int i = 0; i < productDAO.display().size(); i++) {
             if ((productDAO.display().get(i).getPrice() >= lowerPrice) && (productDAO.display().get(i).getPrice() <= upperPrice)) {
-                products.add(productDAO.display().get(i));
+                productsByPrice.add(productDAO.display().get(i));
                 flag = true;
             }
         }
         request.setAttribute("flag", flag);
-        request.setAttribute("products", products);
+        request.setAttribute("productsByPrice", productsByPrice);
         RequestDispatcher rd = request.getRequestDispatcher("user/displaySearch.jsp");
         rd.forward(request, response);
     }
