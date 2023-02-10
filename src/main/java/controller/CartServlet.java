@@ -2,7 +2,6 @@ package controller;
 
 import model.Item;
 import model.Product;
-import service.interfaceService.IProductService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;

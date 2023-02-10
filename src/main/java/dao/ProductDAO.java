@@ -94,7 +94,15 @@ public class ProductDAO implements Crud<Product> {
 
     @Override
     public void delete(int id) {
-
+        try {
+            Connection c = getConnection();
+            PreparedStatement ps = c.prepareStatement("delete from product where id =?");
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            c.close();
+        } catch (SQLException|ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public Product selectById(int id) {
