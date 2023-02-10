@@ -23,8 +23,8 @@
                     <img class="header-logo__img" src="./assets/img/logo/logo1.png" alt="">
                 </a>
                 <div class="col l-5 header-search">
-                    <form class="header-search__form" action="/user" method="post">
-                        <input class="input-search" name="searchByName" type="search" placeholder="Nhập từ khoá tìm kiếm...">
+                    <form class="header-search__form" action="/user?action=searchByName" method="post">
+                        <input class="input-search" name="searchByName" type="text" placeholder="Nhập từ khoá tìm kiếm...">
                         <button class="btn-search">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>

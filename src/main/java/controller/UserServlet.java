@@ -59,6 +59,9 @@ public class UserServlet extends HttpServlet {
             case "searchPrice":
                 searchByPrice(request, response);
                 break;
+            case "searchByName":
+                searchByName(request, response);
+                break;
             default:
                 showProduct(request, response);
                 break;
@@ -66,25 +69,31 @@ public class UserServlet extends HttpServlet {
     }
 
     private void showProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String name = request.getParameter("searchByName");
-        List<Product> products = new ArrayList<>();
-        boolean flag = false;
-        if (name == null) {
-            products = this.productDAO.display();
-        } else {
-
-            for (int i = 0; i < productDAO.display().size(); i++) {
-                if (productDAO.display().get(i).getName().toUpperCase().contains(name.toUpperCase())) {
-                    products.add(productDAO.display().get(i));
-                    flag = true;
-                }
-            }
-        }
-        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-        List<Brand> brands = this.brandDAO.display();
-        request.setAttribute("flag", flag);
-        request.setAttribute("brands", brands);
+//        String name = request.getParameter("searchByName");
+//        List<Product> products = new ArrayList<>();
+//        boolean flag = false;
+//        if (name == null) {
+//            products = this.productDAO.display();
+//        } else {
+//
+//            for (int i = 0; i < productDAO.display().size(); i++) {
+//                if (productDAO.display().get(i).getName().toUpperCase().contains(name.toUpperCase())) {
+//                    products.add(productDAO.display().get(i));
+//                    flag = true;
+//                }
+//            }
+//        }
+//        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+//        List<Brand> brands = this.brandDAO.display();
+//        request.setAttribute("flag", flag);
+//        request.setAttribute("brands", brands);
+//        request.setAttribute("products", products);
+//        rd.forward(request, response);
+        List<Product> products = this.productDAO.display();
+        List<Brand>  brands = this.brandDAO.display();
         request.setAttribute("products", products);
+        request.setAttribute("brands", brands);
+        RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
         rd.forward(request, response);
 
     }
@@ -115,7 +124,9 @@ public class UserServlet extends HttpServlet {
                 flag = true;
             }
         }
+        request.setAttribute("status", flag);
         request.setAttribute("flag", flag);
+        request.setAttribute("brands", brandDAO.display());
         request.setAttribute("productsByName", productsByName);
         RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
         rd.forward(request, response);
@@ -129,7 +140,7 @@ public class UserServlet extends HttpServlet {
         //Tạo list products chứa các product có trường brand tương ứng
         List<Product> productsByBrand = new ArrayList<>();
 
-        //Tạo flag, flag = true nếu tìm thấy sản phẩm có brand tương ứng
+        //Tạo flag. Flag = true nếu tìm thấy sản phẩm có brand tương ứng
         boolean flag = false;
         for (int i = 0; i < productDAO.display().size(); i++) {
             if (productDAO.display().get(i).getBrand().getName().equals(brandName)) {
@@ -137,9 +148,10 @@ public class UserServlet extends HttpServlet {
                 flag = true;
             }
         }
+        request.setAttribute("brands", brandDAO.display());
         request.setAttribute("flag", flag);
         request.setAttribute("productsByBrand", productsByBrand);
-        RequestDispatcher rd = request.getRequestDispatcher("user/displaySearch.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("user/index.jsp");
         rd.forward(request, response);
     }
 
@@ -156,8 +168,9 @@ public class UserServlet extends HttpServlet {
             }
         }
         request.setAttribute("flag", flag);
+        request.setAttribute("brands", brandDAO.display());
         request.setAttribute("productsByPrice", productsByPrice);
-        RequestDispatcher rd = request.getRequestDispatcher("user/displaySearch.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
         rd.forward(request, response);
     }
 
