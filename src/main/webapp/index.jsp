@@ -23,10 +23,12 @@
                     <img class="header-logo__img" src="./assets/img/logo/logo1.png" alt="">
                 </div>
                 <div class="col l-5 header-search">
-                    <input class="input-search" type="search" placeholder="Nhập từ khoá tìm kiếm...">
-                    <button type="submit" class="btn-search">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
+                    <form class="header-search__form" action="/user" method="post">
+                        <input class="input-search" name="searchByName" type="search" placeholder="Nhập từ khoá tìm kiếm...">
+                        <button class="btn-search">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </form>
                 </div>
                 <div class="col l-5">
                     <div class="row header-top__right">
@@ -193,9 +195,35 @@
                     <div class="row">
 
                         <!-- DANH SÁCH SẢN PHẨM -->
-                        <!-- phần truyền database Product -->
+                        <!-- Hiển thị tất cả sản phẩm -->
                         <c:forEach items="${products}" var="p">
                             <div class="col l-3">
+                                <div class="product-container">
+                                    <div class="product-container__img">
+                                        <img class="product-img"
+                                             src="./assets/img/category/atlantic/1462484998_dong-ho-thuy-sy-phien-ban-gioi-han9.jpg"
+                                             alt="">
+                                    </div>
+                                    <div class="product-content">
+                                        <h3 class="product-content__name">${p.getName()}</h3>
+                                        <p class="product-content__desc">${p.getDescription()}</p>
+                                        <div class="product-content__container-price">
+                                            Giá:
+                                            <p class="product-content__price">${p.getPrice()}</p>
+                                        </div>
+                                        <div class="product-content__quantity">
+                                            Số lượng:
+                                            <div class="product-quantity">${p.getQuantity()}</div>
+                                        </div>
+                                        <div class="product-content__status">Còn hàng</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:forEach>
+
+                        <%--Hiển thị sản phẩm tìm kiếm--%>
+                        <c:forEach items="${productsByName}" var="p">
+                            <div class="col l-3" >
                                 <div class="product-container">
                                     <div class="product-container__img">
                                         <img class="product-img"

@@ -20,7 +20,7 @@ public class UserServlet extends HttpServlet {
     @Override
     public void init() {
         this.productDAO = new ProductDAO();
-        this.brandDAO = new BrandDAO<>();
+        this.brandDAO = new BrandDAO();
     }
 
     @Override
@@ -53,9 +53,6 @@ public class UserServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
-            case "searchName":
-                searchByName(request, response);
-                break;
             case "searchByBrand":
                 searchByBrand(request, response);
                 break;
@@ -69,11 +66,27 @@ public class UserServlet extends HttpServlet {
     }
 
     private void showProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Product> products = this.productDAO.display();
-        request.setAttribute("products", products);
+        String name = request.getParameter("searchByName");
+        List<Product> products = new ArrayList<>();
+        boolean flag = false;
+        if (name == null) {
+            products = this.productDAO.display();
+        } else {
+
+            for (int i = 0; i < productDAO.display().size(); i++) {
+                if (productDAO.display().get(i).getName().toUpperCase().contains(name.toUpperCase())) {
+                    products.add(productDAO.display().get(i));
+                    flag = true;
+                }
+            }
+        }
         RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-        showBrand(request);
+        List<Brand> brands = this.brandDAO.display();
+        request.setAttribute("flag", flag);
+        request.setAttribute("brands", brands);
+        request.setAttribute("products", products);
         rd.forward(request, response);
+
     }
 
     private void showBrand(HttpServletRequest request) throws ServletException, IOException {
@@ -104,7 +117,7 @@ public class UserServlet extends HttpServlet {
         }
         request.setAttribute("flag", flag);
         request.setAttribute("productsByName", productsByName);
-        RequestDispatcher rd = request.getRequestDispatcher("user/displaySearch.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
         rd.forward(request, response);
     }
 

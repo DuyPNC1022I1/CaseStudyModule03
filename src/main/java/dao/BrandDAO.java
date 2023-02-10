@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BrandDAO<E> implements Crud<Brand> {
+public class BrandDAO implements Crud<Brand> {
 
     private String jdbcUrl = "jdbc:mysql://localhost:3306/case_module03?useSSL=false";
     private String jdbcUsername = "root";

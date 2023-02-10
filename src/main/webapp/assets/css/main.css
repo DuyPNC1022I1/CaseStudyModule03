@@ -520,3 +520,10 @@
     margin-left: 8px;
     font-size: 1.4rem;
 }
+
+/*Phần update thêm css*/
+.header-search__form {
+    width: 100%;
+    padding: 15px 0;
+    padding-left: 40px;
+}
