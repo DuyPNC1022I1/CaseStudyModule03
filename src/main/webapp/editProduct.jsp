@@ -64,7 +64,7 @@
         </div>
 
         <div class="container-form__btn">
-          <button class="btn" type="submit">Tạo</button>
+          <button class="btn" type="submit">Sửa</button>
         </div>
 
         <a href="/admin" class="container-form__close">

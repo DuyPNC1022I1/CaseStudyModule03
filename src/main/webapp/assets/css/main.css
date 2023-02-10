@@ -527,3 +527,21 @@
     padding: 15px 0;
     padding-left: 40px;
 }
+
+.text-aler__search {
+    margin: auto;
+    justify-content: center;
+    font-size: 4rem;
+    margin-top: 45px;
+    color: red;
+}
+
+.product-btn__action-btn {
+    display: block;
+    background-color: #666;
+    padding: 10px 38px;
+    border-radius: 20px;
+    color: var(--white-color);
+    text-transform: uppercase;
+    text-decoration: none;
+}
