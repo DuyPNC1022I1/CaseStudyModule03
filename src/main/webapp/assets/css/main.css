@@ -474,3 +474,14 @@
     list-style-type: none;
     font-size: 1.4rem;
 }
+
+.product-btn__action-btn:hover {
+    background-color: rgba(102, 102, 102, 0.9);
+}
+
+.product-btn__action {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 20px;
+    padding-bottom: 6px;
+}
