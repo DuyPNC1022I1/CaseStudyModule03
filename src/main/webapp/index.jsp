@@ -209,6 +209,10 @@
                                             Giá:
                                             <p class="product-content__price">${p.getPrice()}</p>
                                         </div>
+                                        <div class="product-content__quantity">
+                                            Số lượng:
+                                            <div class="product-quantity">${p.getQuantity()}</div>
+                                        </div>
                                         <div class="product-content__status">Còn hàng</div>
                                     </div>
                                 </div>

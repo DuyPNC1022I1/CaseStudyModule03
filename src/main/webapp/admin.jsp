@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: DELL
@@ -208,27 +209,34 @@
 
                         <!-- DANH SÁCH SẢN PHẨM -->
                         <!-- phần truyền database Product -->
-                        <div class="col l-3">
-                            <div class="product-container">
-                                <div class="product-container__img">
-                                    <img class="product-img" src="./assets/img/category/atlantic/1462484998_dong-ho-thuy-sy-phien-ban-gioi-han9.jpg" alt="">
-                                </div>
-                                <div class="product-content">
-                                    <h3 class="product-content__name">Đồng hồ Atlantic Swiss AT-52851.44.25</h3>
-                                    <p class="product-content__desc">Size mặt 40mm - Kính cứng</p>
-                                    <div class="product-content__container-price">
-                                        Giá:
-                                        <p class="product-content__price">130.000.000đ</p>
+                        <c:forEach items="${product}" var="product">
+                            <div class="col l-3">
+                                <div class="product-container">
+                                    <div class="product-container__img">
+                                        <img class="product-img" src="./assets/img/category/atlantic/1462484998_dong-ho-thuy-sy-phien-ban-gioi-han9.jpg" alt="">
                                     </div>
-                                    <div class="product-content__status">Sẵn sàng</div>
-                                    <div class="product-btn__action">
-                                        <a class="product-btn__action-btn" href="">Sửa</a>
+                                    <div class="product-content">
+                                        <h3 class="product-content__name">${p.getName()}</h3>
+                                        <p class="product-content__desc">${p.getDescription()}</p>
+                                        <div class="product-content__container-price">
+                                            Giá:
+                                            <p class="product-content__price">${p.getPrice()}</p>
+                                        </div>
 
-                                        <a class="product-btn__action-btn" href="">Xoá</a>
+                                        <div class="product-content__quantity">
+                                            Số lượng:
+                                            <div class="product-quantity">${p.getQuantity()}</div>
+                                        </div>
+                                        <div class="product-content__status">Còn hàng</div>
+                                        <div class="product-btn__action">
+                                            <a class="product-btn__action-btn" href="/admin?action=createProduct&id=${product.getId()}">Sửa</a>
+
+                                            <a class="product-btn__action-btn" href="/admin?action=deleteProduct&id=${prodcuct.getId()}">Xoá</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </c:forEach>
                     </div>
                 </div>
             </div>
