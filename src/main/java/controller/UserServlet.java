@@ -30,15 +30,7 @@ public class UserServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
-            case "view":
-                break;
-            case "createAccount":
-                showCreateAccount(response);
-                break;
             case "buy":
-                break;
-            case "login":
-                showLogin(response);
                 break;
             default:
                 showProduct(request, response);
@@ -71,7 +63,7 @@ public class UserServlet extends HttpServlet {
     private void showProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("products", this.productDAO.display());
         request.setAttribute("brands", this.brandDAO.display());
-        RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/user.jsp");
         rd.forward(request, response);
 
     }
@@ -79,15 +71,7 @@ public class UserServlet extends HttpServlet {
     private void showBrand(HttpServletRequest request) throws ServletException, IOException {
         List<Brand> brands = this.brandDAO.display();
         request.setAttribute("brands", brands);
-        RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
-    }
-
-    private void showLogin(HttpServletResponse response) throws IOException {
-        response.sendRedirect("login/login-form/login.jsp");
-    }
-
-    private void showCreateAccount(HttpServletResponse response) throws IOException {
-        response.sendRedirect("/login/login-form/Sigup.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/user.jsp");
     }
 
     //Tìm + Hiển thị sản phẩm theo tên
@@ -109,7 +93,7 @@ public class UserServlet extends HttpServlet {
         request.setAttribute("flag", flag);
         request.setAttribute("brands", brandDAO.display());
         request.setAttribute("productsByName", productsByName);
-        RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/user.jsp");
         rd.forward(request, response);
     }
 
@@ -133,7 +117,7 @@ public class UserServlet extends HttpServlet {
         request.setAttribute("flag", flag);
         request.setAttribute("choose", choose);
         request.setAttribute("productsByBrand", productsByBrand);
-        RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/user.jsp");
         rd.forward(request, response);
     }
 
@@ -165,7 +149,7 @@ public class UserServlet extends HttpServlet {
         request.setAttribute("choose", choose);
         request.setAttribute("brands", brandDAO.display());
         request.setAttribute("productsByPrice", productsByPrice);
-        RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/user.jsp");
         rd.forward(request, response);
     }
 }

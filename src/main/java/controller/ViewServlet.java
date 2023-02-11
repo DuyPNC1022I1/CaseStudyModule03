@@ -31,6 +31,8 @@ public class ViewServlet extends HttpServlet {
             case "showLogin":
                 showLogin(request,response);
                 break;
+            case "logOut":
+                logOut(request, response);
             case "showCreate":
                 showCreate(request, response);
                 break;
@@ -87,12 +89,12 @@ public class ViewServlet extends HttpServlet {
         }
     }
 
+    public void logOut(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession();
+        session.removeAttribute("account");
+        response.sendRedirect("home");
+    }
     private void showCreate(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.sendRedirect("login/login-form/Sigup.jsp");
     }
-//    public void logOut(HttpServletRequest request, HttpServletResponse response) throws IOException {
-//        HttpSession session = request.getSession();
-//        session.removeAttribute("account");
-//        response.sendRedirect("home");
-//    }
 }
