@@ -53,7 +53,7 @@ public class AdminServlet extends HttpServlet {
         }
         switch (action) {
             case "create":
-                createProduct(request);
+                createProduct(request, response);
                 break;
             case "update":
                 update(request, response);
@@ -76,7 +76,7 @@ public class AdminServlet extends HttpServlet {
         showBrand(request);
         rd.forward(request, response);
     }
-    private void createProduct(HttpServletRequest request) {
+    private void createProduct(HttpServletRequest request, HttpServletResponse response) throws IOException {
         double price = 0;
         int quantity = 0;
         try {
@@ -91,6 +91,7 @@ public class AdminServlet extends HttpServlet {
         String brand = request.getParameter("brand");
 
         productDAO.create(new Product(name, price, quantity, description, image, brandDAO.selectByName(brand)));
+        response.sendRedirect("/admin");
     }
 
     private void showUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -102,24 +103,22 @@ public class AdminServlet extends HttpServlet {
     }
 
     private void update(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int id = 0;
-        String name = "";
         double price = 0;
         int quantity = 0;
         try {
-            id = Integer.parseInt(request.getParameter("id"));
-            name = request.getParameter("name");
             price = Double.parseDouble(request.getParameter("price"));
             quantity = Integer.parseInt(request.getParameter("quantity"));
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
         String description = request.getParameter("description");
         String image = request.getParameter("image");
         String brand = request.getParameter("brand");
 
         productDAO.update(new Product(id, name, price, quantity, description, image, brandDAO.selectByName(brand)));
-        response.sendRedirect("/admin.jsp");
+        response.sendRedirect("/admin");
     }
 
     private void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {

@@ -118,7 +118,7 @@
                     </div>
                     <form action="/user?action=searchByBrand" method="post" class="filter__category">
                         <p class="filter__category-head">
-                            Theo Hãng:
+                            Theo thương hiệu:
                         </p>
                         <ul class="filter__category-list">
                             <c:forEach items="${brands}" var="brand">

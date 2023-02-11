@@ -61,9 +61,6 @@
                         <p class="container-form__item-label container-form__select-header">Thương hiệu: </p>
                     </div>
                     <select name="brand" id="brand">
-                        <c:forEach items="${requestScope['brands']}" var="brand">
-                            <option>${brand.getName()}</option>
-                        </c:forEach>
                         <c:forEach items="${brands}" var="brand">
                             <option value="${brand.getName()}">${brand.getName()}</option>
                         </c:forEach>
