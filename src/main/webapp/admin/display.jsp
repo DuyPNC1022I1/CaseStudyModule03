@@ -33,9 +33,7 @@
             <td>${product.getDescription()}</td>
             <td>${product.getImage()}</td>
             <td>${product.getBrand().getName()}</td>
-            <td>
-                <a href="admin?action=showCreate"><button>Create new</button></a>
-            </td>
+
             <td>
                 <a href="/admin?action=showUpdate&id=${product.getId()}"><button>Edit</button></a>
             </td>
@@ -45,5 +43,8 @@
         </tr>
     </c:forEach>
 </table>
+<p>
+    <a href="admin?action=showCreate"><button>Create new</button></a>
+</p>
 </body>
 </html>

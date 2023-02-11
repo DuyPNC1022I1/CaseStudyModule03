@@ -123,15 +123,15 @@
                         <ul class="filter__category-list">
                             <c:forEach items="${brands}" var="brand">
                                 <li class="filter__category-item">
-                                    <input class="filter__category-item-check" type="radio" name=""
-                                           value="${brand.getId()}">
+                                    <input class="filter__category-item-check" type="radio" name="searchByBrand"
+                                           value="${brand.getName()}">
                                     <p>${brand.getName()}</p>
                                 </li>
                             </c:forEach>
                         </ul>
                         <input type="submit" value="Tìm kiếm">
                     </form>
-                    <form action="/user?action=searchPrice" method="post" class="filter__category">
+                    <form action="/user?action=searchByPrice" method="post" class="filter__category">
                         <p class="filter__category-head">
                             Theo Khoảng Giá:
                         </p>
@@ -139,11 +139,11 @@
                             <div class="row">
                                 <div class="col l-12 filter__category-list-input">
                                     <p class="filter__category-list-text">Từ: </p>
-                                    <input class="filter-input" type="text" value="" placeholder="Từ">
+                                    <input class="filter-input" type="text" name="lowerPrice" placeholder="Từ">
                                 </div>
                                 <div class="col l-12 filter__category-list-input">
                                     <p class="filter__category-list-text">Đến:</p>
-                                    <input class="filter-input" type="text" value="" placeholder="Đến">
+                                    <input class="filter-input" type="text" name="upperPrice" placeholder="Đến">
                                 </div>
                             </div>
                         </div>
@@ -214,7 +214,7 @@
                                         <p class="product-content__desc">${p.getDescription()}</p>
                                         <div class="product-content__container-price">
                                             Giá:
-                                            <p class="product-content__price">${p.getPrice()}</p>
+                                            <p class="product-content__price">${p.getPrice()} VND</p>
                                         </div>
                                         <div class="product-content__quantity">
                                             Số lượng:
@@ -225,7 +225,9 @@
                                                 <div class="product-content__status">Còn hàng</div>
                                             </c:when>
                                             <c:when test="${p.getQuantity() == 0}">
-                                                <div style="background-color: red" class="product-content__status">Hết hàng</div>
+                                                <div style="background-color: red" class="product-content__status">Hết
+                                                    hàng
+                                                </div>
                                             </c:when>
                                         </c:choose>
                                     </div>
@@ -235,11 +237,52 @@
 
                         <%--Hiển thị sản phẩm tìm kiếm--%>
                         <c:choose>
-                            <c:when test="${requestScope['flag'] == false}">
-                                <p class="text-aler__search">Không tìm thấy sản phẩm!</p>
+                            <%--                            Phần hiển thị search by name--%>
+                            <c:when test="${requestScope['choose'] == 1}">
+                                <c:choose>
+                                    <c:when test="${requestScope['flag'] == false}">
+                                        <p class="text-aler__search">Không tìm thấy sản phẩm!</p>
+                                    </c:when>
+                                    <c:when test='${requestScope["flag"] == true}'>
+                                        <c:forEach items="${productsByName}" var="p">
+                                            <div class="col l-3">
+                                                <div class="product-container">
+                                                    <div class="product-container__img">
+                                                        <img class="product-img"
+                                                             src="./assets/img/category/atlantic/1462484998_dong-ho-thuy-sy-phien-ban-gioi-han9.jpg"
+                                                             alt="">
+                                                    </div>
+                                                    <div class="product-content">
+                                                        <h3 class="product-content__name">${p.getName()}</h3>
+                                                        <p class="product-content__desc">${p.getDescription()}</p>
+                                                        <div class="product-content__container-price">
+                                                            Giá:
+                                                            <p class="product-content__price">${p.getPrice()} VND</p>
+                                                        </div>
+                                                        <div class="product-content__quantity">
+                                                            Số lượng:
+                                                            <div class="product-quantity">${p.getQuantity()}</div>
+                                                        </div>
+                                                        <c:choose>
+                                                            <c:when test="${p.getQuantity() > 0}">
+                                                                <div class="product-content__status">Còn hàng</div>
+                                                            </c:when>
+                                                            <c:when test="${p.getQuantity() == 0}">
+                                                                <div style="background-color: red"
+                                                                     class="product-content__status">Hết hàng
+                                                                </div>
+                                                            </c:when>
+                                                        </c:choose>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </c:forEach>
+                                    </c:when>
+                                </c:choose>
                             </c:when>
-                            <c:when test='${requestScope["flag"] == true}'>
-                                <c:forEach items="${productsByName}" var="p">
+                            <%--                            Phần hiển thị search by brand--%>
+                            <c:when test="${requestScope['choose'] == 2}">
+                                <c:forEach items="${productsByBrand}" var="p">
                                     <div class="col l-3">
                                         <div class="product-container">
                                             <div class="product-container__img">
@@ -252,7 +295,7 @@
                                                 <p class="product-content__desc">${p.getDescription()}</p>
                                                 <div class="product-content__container-price">
                                                     Giá:
-                                                    <p class="product-content__price">${p.getPrice()}</p>
+                                                    <p class="product-content__price">${p.getPrice()} VND</p>
                                                 </div>
                                                 <div class="product-content__quantity">
                                                     Số lượng:
@@ -263,16 +306,55 @@
                                                         <div class="product-content__status">Còn hàng</div>
                                                     </c:when>
                                                     <c:when test="${p.getQuantity() == 0}">
-                                                        <div style="background-color: red" class="product-content__status">Hết hàng</div>
+                                                        <div style="background-color: red"
+                                                             class="product-content__status">Hết hàng
+                                                        </div>
                                                     </c:when>
                                                 </c:choose>
                                             </div>
                                         </div>
                                     </div>
                                 </c:forEach>
-                                </table>
+                            </c:when>
+                            <%--                            Phần hiển thị search by price--%>
+                            <c:when test="${requestScope['choose'] == 3}">
+                                <c:forEach items="${productsByPrice}" var="p">
+                                    <div class="col l-3">
+                                        <div class="product-container">
+                                            <div class="product-container__img">
+                                                <img class="product-img"
+                                                     src="./assets/img/category/atlantic/1462484998_dong-ho-thuy-sy-phien-ban-gioi-han9.jpg"
+                                                     alt="">
+                                            </div>
+                                            <div class="product-content">
+                                                <h3 class="product-content__name">${p.getName()}</h3>
+                                                <p class="product-content__desc">${p.getDescription()}</p>
+                                                <div class="product-content__container-price">
+                                                    Giá:
+                                                    <p class="product-content__price">${p.getPrice()} VND</p>
+                                                </div>
+                                                <div class="product-content__quantity">
+                                                    Số lượng:
+                                                    <div class="product-quantity">${p.getQuantity()}</div>
+                                                </div>
+                                                <c:choose>
+                                                    <c:when test="${p.getQuantity() > 0}">
+                                                        <div class="product-content__status">Còn hàng</div>
+                                                    </c:when>
+                                                    <c:when test="${p.getQuantity() == 0}">
+                                                        <div style="background-color: red"
+                                                             class="product-content__status">Hết hàng
+                                                        </div>
+                                                    </c:when>
+                                                </c:choose>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </c:forEach>
                             </c:when>
                         </c:choose>
+
+
                     </div>
                 </div>
             </div>
