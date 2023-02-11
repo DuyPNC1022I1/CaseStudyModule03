@@ -89,10 +89,8 @@ public class UserServlet extends HttpServlet {
 //        request.setAttribute("brands", brands);
 //        request.setAttribute("products", products);
 //        rd.forward(request, response);
-        List<Product> products = this.productDAO.display();
-        List<Brand> brands = this.brandDAO.display();
-        request.setAttribute("products", products);
-        request.setAttribute("brands", brands);
+        request.setAttribute("products", this.productDAO.display());
+        request.setAttribute("brands", this.brandDAO.display());
         RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
         rd.forward(request, response);
 
@@ -101,7 +99,7 @@ public class UserServlet extends HttpServlet {
     private void showBrand(HttpServletRequest request) throws ServletException, IOException {
         List<Brand> brands = this.brandDAO.display();
         request.setAttribute("brands", brands);
-        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
     }
 
     private void showLogin(HttpServletResponse response) throws IOException {
@@ -151,7 +149,7 @@ public class UserServlet extends HttpServlet {
         request.setAttribute("brands", brandDAO.display());
         request.setAttribute("flag", flag);
         request.setAttribute("productsByBrand", productsByBrand);
-        RequestDispatcher rd = request.getRequestDispatcher("user/index.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
         rd.forward(request, response);
     }
 
@@ -173,5 +171,4 @@ public class UserServlet extends HttpServlet {
         RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
         rd.forward(request, response);
     }
-
 }

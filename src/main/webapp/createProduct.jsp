@@ -55,6 +55,8 @@
                     </div>
                     <select name="brand" id="brand">
                         <option value="">Casio</option>
+                        <option value="">Rolex</option>
+                        <option value="">Seiko</option>
                     </select>
                 </div>
 

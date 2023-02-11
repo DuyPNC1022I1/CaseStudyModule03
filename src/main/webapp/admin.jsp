@@ -221,7 +221,14 @@
                                             Số lượng:
                                             <div class="product-quantity">${product.getQuantity()}</div>
                                         </div>
-                                        <div class="product-content__status">Còn hàng</div>
+                                        <c:choose>
+                                            <c:when test="${product.getQuantity() > 0}">
+                                                <div class="product-content__status">Còn hàng</div>
+                                            </c:when>
+                                            <c:when test="${product.getQuantity() == 0}">
+                                                <div style="background-color: red" class="product-content__status">Hết hàng</div>
+                                            </c:when>
+                                        </c:choose>
                                         <div class="product-btn__action">
                                             <a class="product-btn__action-btn" href="/admin?action=showUpdate&id=${product.getId()}">Sửa</a>
 

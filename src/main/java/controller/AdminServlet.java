@@ -65,14 +65,13 @@ public class AdminServlet extends HttpServlet {
     }
 
     private void display(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        List<Product> products =  this.productDAO.display();
-        request.setAttribute("products", products);
-        RequestDispatcher rd = request.getRequestDispatcher("admin.jsp");
-        showBrand(request);
+        request.setAttribute("products", this.productDAO.display());
+        request.setAttribute("brands", this.brandDAO.display());
+        RequestDispatcher rd = request.getRequestDispatcher("/admin.jsp");
         rd.forward(request, response);
     }
     private void showCreatForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        request.setAttribute("brands", brandDAO.display());
+        request.setAttribute("brands", this.brandDAO.display());
         RequestDispatcher rd = request.getRequestDispatcher("createProduct.jsp");
         rd.forward(request, response);
     }
@@ -89,9 +88,8 @@ public class AdminServlet extends HttpServlet {
 
     private void showUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        Product product = productDAO.selectById(id);
-        request.setAttribute("product", product);
-        request.setAttribute("brands", brandDAO.display());
+        request.setAttribute("product", this.productDAO.selectById(id));
+        request.setAttribute("brands", this.brandDAO.display());
         RequestDispatcher rd = request.getRequestDispatcher("editProduct.jsp");
         rd.forward(request, response);
     }
