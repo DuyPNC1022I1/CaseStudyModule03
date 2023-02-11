@@ -23,12 +23,7 @@
     <a href="/admin" class="modal-background"></a>
     <div class="container">
       <h1 class="container-header">Chỉnh sửa sản phẩm</h1>
-      <form class="container-form" action="/admin?action=editProduct" method="post">
-        <div class="container-form__item">
-          <label class="container-form__item-label" for="id">Mã sản phẩm: </label>
-          <input class="container-form__item-input" type="text" name="id" id="id" value="${product.getId()}">
-        </div>
-
+      <form class="container-form" action="/admin?action=update&id=${product.getId()}" method="post">
         <div class="container-form__item">
           <label class="container-form__item-label" for="name">Tên sản phẩm: </label>
           <input class="container-form__item-input" type="text" name="name" id="name" value="${product.getName()}">

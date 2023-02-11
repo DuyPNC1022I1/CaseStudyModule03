@@ -69,26 +69,6 @@ public class UserServlet extends HttpServlet {
     }
 
     private void showProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        String name = request.getParameter("searchByName");
-//        List<Product> products = new ArrayList<>();
-//        boolean flag = false;
-//        if (name == null) {
-//            products = this.productDAO.display();
-//        } else {
-//
-//            for (int i = 0; i < productDAO.display().size(); i++) {
-//                if (productDAO.display().get(i).getName().toUpperCase().contains(name.toUpperCase())) {
-//                    products.add(productDAO.display().get(i));
-//                    flag = true;
-//                }
-//            }
-//        }
-//        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-//        List<Brand> brands = this.brandDAO.display();
-//        request.setAttribute("flag", flag);
-//        request.setAttribute("brands", brands);
-//        request.setAttribute("products", products);
-//        rd.forward(request, response);
         request.setAttribute("products", this.productDAO.display());
         request.setAttribute("brands", this.brandDAO.display());
         RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
@@ -141,7 +121,7 @@ public class UserServlet extends HttpServlet {
         List<Product> productsByBrand = new ArrayList<>();
         //Tạo flag. Flag = true nếu tìm thấy sản phẩm có brand tương ứng
         boolean flag = false;
-        //Tạo biến chọn phần hiển thị tìm kiếm trên màn hình: 1: searchByName, 2: searchByBrand, 3: sarchByPrice
+        //Tạo biến chọn phần hiển thị tìm kiếm trên màn hình: 1: searchByName, 2: searchByBrand, 3: searchByPrice
         int choose = 2;
         for (int i = 0; i < productDAO.display().size(); i++) {
             if (productDAO.display().get(i).getBrand().getName().equals(brandName)) {
@@ -159,8 +139,17 @@ public class UserServlet extends HttpServlet {
 
     //Tìm + Hiển thị sản phẩm theo giá tiền
     private void searchByPrice(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        double lowerPrice = Double.parseDouble(request.getParameter("lowerPrice"));
-        double upperPrice = Double.parseDouble(request.getParameter("upperPrice"));
+        double lowerPrice = 0;
+        double upperPrice = 0;
+        //Tạo biến hiển hiển thị lỗi khi nguười dùng nhập sai kiểu dữ liệu
+        boolean err = true;
+        try {
+            lowerPrice = Double.parseDouble(request.getParameter("lowerPrice"));
+            upperPrice = Double.parseDouble(request.getParameter("upperPrice"));
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            err = false;
+        }
         List<Product> productsByPrice = new ArrayList<>();
         boolean flag = false;
         //Tạo biến chọn phần hiển thị tìm kiếm trên màn hình: 1: searchByName, 2: searchByBrand, 3: sarchByPrice
@@ -171,6 +160,7 @@ public class UserServlet extends HttpServlet {
                 flag = true;
             }
         }
+        request.setAttribute("err", err);
         request.setAttribute("flag", flag);
         request.setAttribute("choose", choose);
         request.setAttribute("brands", brandDAO.display());

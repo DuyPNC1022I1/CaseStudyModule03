@@ -545,3 +545,15 @@
     text-transform: uppercase;
     text-decoration: none;
 }
+
+.filter__category-btn {
+    padding: 8px 10px;
+    border-radius: 20px;
+    border: 1px solid;
+}
+
+.filter__category-container-btn {
+    display: flex;
+    justify-content: end;
+    margin-top: 20px;
+}

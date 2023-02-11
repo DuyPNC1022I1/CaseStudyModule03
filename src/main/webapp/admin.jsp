@@ -85,16 +85,16 @@
                     <div class="header__navbar">
                         <div class="row">
                             <div class="col l-3 header__navbar-item">
-                                <a href="" class="header__navbar-link">Giới thiệu</a>
+                                <a href="https://www.dangquangwatch.vn/tin-tuc/226/Dang-Quang-Watch-nha-nhap-khau-dong-ho-chinh-hang-Thuy-Sy.html" class="header__navbar-link">Giới thiệu</a>
                             </div>
                             <div class="col l-3 header__navbar-item">
-                                <a href="" class="header__navbar-link">Chính sách bảo mật</a>
+                                <a href="https://www.dangquangwatch.vn/chinh-sach-chung/5/3.-Chinh-sach-bao-mat.html" class="header__navbar-link">Chính sách bảo mật</a>
                             </div>
                             <div class="col l-3 header__navbar-item">
                                 <a href="" class="header__navbar-link">Chính sách bảo hành</a>
                             </div>
                             <div class="col l-3 header__navbar-item">
-                                <a href="" class="header__navbar-link">Tin tức sự kiện</a>
+                                <a href="https://www.dangquangwatch.vn/tin-tuc-dong-ho.html" class="header__navbar-link">Tin tức sự kiện</a>
                             </div>
                         </div>
                     </div>
@@ -128,13 +128,16 @@
                         <ul class="filter__category-list">
                             <c:forEach items="${brands}" var="brand">
                                 <li class="filter__category-item">
-                                    <input class="filter__category-item-check" type="radio" name="" value="${brand.getId()}">
+                                    <input class="filter__category-item-check" type="radio" name="searchByBrand" value="${brand.getName()}">
                                     <p>${brand.getName()}</p>
                                 </li>
                             </c:forEach>
                         </ul>
+                        <div class="filter__category-container-btn">
+                            <input class="filter__category-btn" type="submit" value="Tìm kiếm">
+                        </div>
                     </form>
-                    <div class="filter__category">
+                    <form action="/admin?" method="post" class="filter__category">
                         <p class="filter__category-head">
                             Theo Khoảng Giá:
                         </p>
@@ -150,7 +153,10 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        <div class="filter__category-container-btn">
+                            <input class="filter__category-btn" type="submit" value="Tìm kiếm">
+                        </div>
+                    </form>
                 </div>
 
                 <div class="col l-10 content">
@@ -242,8 +248,6 @@
 
                     <div class="row content__container-btn">
                         <a href="/admin?action=showCreate" class="btn">Thêm Sản Phẩm</a>
-
-                        <a href="/admin?action=createBrand" class="btn">Thêm thương hiệu</a>
                     </div>
                 </div>
             </div>
