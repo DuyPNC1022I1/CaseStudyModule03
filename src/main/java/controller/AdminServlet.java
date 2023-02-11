@@ -53,7 +53,7 @@ public class AdminServlet extends HttpServlet {
         }
         switch (action) {
             case "create":
-                createProduct(request, response);
+                createProduct(request);
                 break;
             case "update":
                 update(request, response);
@@ -75,10 +75,16 @@ public class AdminServlet extends HttpServlet {
         RequestDispatcher rd = request.getRequestDispatcher("createProduct.jsp");
         rd.forward(request, response);
     }
-    private void createProduct(HttpServletRequest request, HttpServletResponse response) {
+    private void createProduct(HttpServletRequest request) {
+        double price = 0;
+        int quantity = 0;
+        try {
+            price = Double.parseDouble(request.getParameter("price"));
+            quantity = Integer.parseInt(request.getParameter("quantity"));
+        }catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
         String name = request.getParameter("name");
-        double price = Double.parseDouble(request.getParameter("price"));
-        int quantity = Integer.parseInt(request.getParameter("quantity"));
         String description = request.getParameter("description");
         String image = request.getParameter("image");
         String brand = request.getParameter("brand");

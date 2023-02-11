@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
@@ -54,7 +55,9 @@
             <p class="container-form__item-label container-form__select-header">Thương hiệu: </p>
           </div>
           <select name="brand" id="brand">
-            <option value="${product.getBrand().getId()}">${product.getBrand().getName()}</option>
+            <c:forEach items="${requestScope['brands']}" var="brand">
+              <option>${brand.getName()}</option>
+            </c:forEach>
           </select>
         </div>
 
