@@ -73,6 +73,7 @@ public class AdminServlet extends HttpServlet {
     private void showCreatForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         request.setAttribute("brands", this.brandDAO.display());
         RequestDispatcher rd = request.getRequestDispatcher("createProduct.jsp");
+        showBrand(request);
         rd.forward(request, response);
     }
     private void createProduct(HttpServletRequest request, HttpServletResponse response) {
@@ -116,6 +117,6 @@ public class AdminServlet extends HttpServlet {
     private void showBrand(HttpServletRequest request) {
         List<Brand> brands = this.brandDAO.display();
         request.setAttribute("brands", brands);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("admin.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("createProduct.jsp");
     }
 }
