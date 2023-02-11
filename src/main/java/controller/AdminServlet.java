@@ -95,16 +95,24 @@ public class AdminServlet extends HttpServlet {
     }
 
     private void update(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        String name = request.getParameter("name");
-        double price = Double.parseDouble(request.getParameter("price"));
-        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        int id = 0;
+        String name = "";
+        double price = 0;
+        int quantity = 0;
+        try {
+            id = Integer.parseInt(request.getParameter("id"));
+            name = request.getParameter("name");
+            price = Double.parseDouble(request.getParameter("price"));
+            quantity = Integer.parseInt(request.getParameter("quantity"));
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
         String description = request.getParameter("description");
         String image = request.getParameter("image");
         String brand = request.getParameter("brand");
 
         productDAO.update(new Product(id, name, price, quantity, description, image, brandDAO.selectByName(brand)));
-        response.sendRedirect("/admin");
+        response.sendRedirect("/admin.jsp");
     }
 
     private void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
