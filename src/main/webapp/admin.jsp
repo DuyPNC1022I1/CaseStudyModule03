@@ -59,8 +59,8 @@
                         </div>
                         <div class="col l-4 header-top__right-item">
                             <div class="header__container">
-                                <a href="" class="header-top__right-login">Đăng Nhập</a>
-                                <a href="" class="header-top__right-register">Đăng Ký</a>
+                                <a href="" class="header-top__right-login">Admin</a>
+                                <a href="/index.jsp" class="header-top__right-register">Log out</a>
                             </div>
                         </div>
                     </div>

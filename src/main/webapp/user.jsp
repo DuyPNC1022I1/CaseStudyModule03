@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: THIS PC
+  Date: 2/12/2023
+  Time: 4:26 AM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
@@ -54,8 +61,8 @@
                         </div>
                         <div class="col l-4 header-top__right-item">
                             <div class="header__container">
-                                <a href="/view?action=showLogin" class="header-top__right-login">Đăng Nhập</a>
-                                <a href="/view?action=showCreate" class="header-top__right-register">Đăng Ký</a>
+                                <a class="header-top__right-login">USER</a>
+                                <a href="/index.jsp" class="header-top__right-register">Log out</a>
                             </div>
                         </div>
                     </div>
@@ -238,6 +245,137 @@
                                 </div>
                             </div>
                         </c:forEach>
+
+                        <%--Hiển thị sản phẩm tìm kiếm--%>
+                        <c:choose>
+                            <%--Phần hiển thị search by name--%>
+                            <c:when test="${requestScope['choose'] == 1}">
+                                <c:choose>
+                                    <c:when test="${requestScope['flag'] == false}">
+                                        <p class="text-aler__search">Không tìm thấy sản phẩm có tên vừa nhập!</p>
+                                    </c:when>
+                                    <c:when test='${requestScope["flag"] == true}'>
+                                        <c:forEach items="${productsByName}" var="p">
+                                            <div class="col l-3">
+                                                <div class="product-container">
+                                                    <div class="product-container__img">
+                                                        <img class="product-img"
+                                                             src="./assets/img/category/atlantic/1462484998_dong-ho-thuy-sy-phien-ban-gioi-han9.jpg"
+                                                             alt="">
+                                                    </div>
+                                                    <div class="product-content">
+                                                        <h3 class="product-content__name">${p.getName()}</h3>
+                                                        <p class="product-content__desc">${p.getDescription()}</p>
+                                                        <div class="product-content__container-price">
+                                                            Giá:
+                                                            <p class="product-content__price">${p.getPrice()} VND</p>
+                                                        </div>
+                                                        <div class="product-content__quantity">
+                                                            Số lượng:
+                                                            <div class="product-quantity">${p.getQuantity()}</div>
+                                                        </div>
+                                                        <c:choose>
+                                                            <c:when test="${p.getQuantity() > 0}">
+                                                                <div class="product-content__status">Còn hàng</div>
+                                                            </c:when>
+                                                            <c:when test="${p.getQuantity() == 0}">
+                                                                <div style="background-color: red"
+                                                                     class="product-content__status">Hết hàng
+                                                                </div>
+                                                            </c:when>
+                                                        </c:choose>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </c:forEach>
+                                    </c:when>
+                                </c:choose>
+                            </c:when>
+                            <%--Phần hiển thị search by brand--%>
+                            <c:when test="${requestScope['choose'] == 2}">
+                                <c:forEach items="${productsByBrand}" var="p">
+                                    <div class="col l-3">
+                                        <div class="product-container">
+                                            <div class="product-container__img">
+                                                <img class="product-img"
+                                                     src="./assets/img/category/atlantic/1462484998_dong-ho-thuy-sy-phien-ban-gioi-han9.jpg"
+                                                     alt="">
+                                            </div>
+                                            <div class="product-content">
+                                                <h3 class="product-content__name">${p.getName()}</h3>
+                                                <p class="product-content__desc">${p.getDescription()}</p>
+                                                <div class="product-content__container-price">
+                                                    Giá:
+                                                    <p class="product-content__price">${p.getPrice()} VND</p>
+                                                </div>
+                                                <div class="product-content__quantity">
+                                                    Số lượng:
+                                                    <div class="product-quantity">${p.getQuantity()}</div>
+                                                </div>
+                                                <c:choose>
+                                                    <c:when test="${p.getQuantity() > 0}">
+                                                        <div class="product-content__status">Còn hàng</div>
+                                                    </c:when>
+                                                    <c:when test="${p.getQuantity() == 0}">
+                                                        <div style="background-color: red"
+                                                             class="product-content__status">Hết hàng
+                                                        </div>
+                                                    </c:when>
+                                                </c:choose>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </c:forEach>
+                            </c:when>
+                            <%--Phần hiển thị search by price--%>
+                            <c:when test="${requestScope['choose'] == 3}">
+                                <c:choose>
+                                    <c:when test="${requestScope['err'] == false}">
+                                        <p class="text-aler__search">Nhập sai dữ liệu! Vui lòng nhập lại dữ liệu dạng số!</p>
+                                    </c:when>
+                                    <c:when test="${requestScope['flag'] == false}">
+                                        <p class="text-aler__search">Không tìm thấy sản phẩm có giá vừa nhập!</p>
+                                    </c:when>
+                                    <c:when test="${requestScope['err'] == true}">
+                                        <c:forEach items="${productsByPrice}" var="p">
+                                            <div class="col l-3">
+                                                <div class="product-container">
+                                                    <div class="product-container__img">
+                                                        <img class="product-img"
+                                                             src="./assets/img/category/atlantic/1462484998_dong-ho-thuy-sy-phien-ban-gioi-han9.jpg"
+                                                             alt="">
+                                                    </div>
+                                                    <div class="product-content">
+                                                        <h3 class="product-content__name">${p.getName()}</h3>
+                                                        <p class="product-content__desc">${p.getDescription()}</p>
+                                                        <div class="product-content__container-price">
+                                                            Giá:
+                                                            <p class="product-content__price">${p.getPrice()} VND</p>
+                                                        </div>
+                                                        <div class="product-content__quantity">
+                                                            Số lượng:
+                                                            <div class="product-quantity">${p.getQuantity()}</div>
+                                                        </div>
+                                                        <c:choose>
+                                                            <c:when test="${p.getQuantity() > 0}">
+                                                                <div class="product-content__status">Còn hàng</div>
+                                                            </c:when>
+                                                            <c:when test="${p.getQuantity() == 0}">
+                                                                <div style="background-color: red"
+                                                                     class="product-content__status">Hết hàng
+                                                                </div>
+                                                            </c:when>
+                                                        </c:choose>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </c:forEach>
+                                    </c:when>
+                                </c:choose>
+                            </c:when>
+                        </c:choose>
+
+
                     </div>
                 </div>
             </div>

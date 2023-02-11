@@ -14,12 +14,12 @@
 <!--header start-->
 <div class="header">
 	<div class="header-main">
-		<div id="form-main" acciton=" /AccountServlet" >
+		<div id="form-main" action="/AccountServlet" >
 			<h1> Login Form</h1>
 			<div class="header-bottom">
 				<div class="header-right w3agile">
 					<div class="header-left-bottom agileinfo">
-						<form action="AccountServlet" method="post">
+						<form action="/AccountServlet" method="post">
 							<input type="text"  value="User name" name="username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'User name';}"/>
 							<input type="password"  value="Password" name="password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'password';}"/>
 							<div class="remember">
