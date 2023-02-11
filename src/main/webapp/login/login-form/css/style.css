@@ -296,7 +296,7 @@ span.sin-color {
 }
 .strip-left input.user {
 /*-- agileits --*/
- background:url(../images/user.png)no-repeat 10px 9px #FBFBFB;
+ background:url(../images/m.png)no-repeat 10px 9px #FBFBFB;
   display: block;
 }
 
@@ -313,7 +313,7 @@ span.sin-color {
 	background:#eeeeee;
 }
 .strip-left input.lock {
-   background: url(../images/lock.png)no-repeat 10px 10px #FBFBFB;
+   background: url(../images/l.png)no-repeat 10px 10px #FBFBFB;
   display: block;
 }
 .strip-left {
@@ -799,4 +799,22 @@ span.sin-color {
     margin-right: 4%;
 }
 }
-/*--meadia quries end here--*/
+#login  {
+    margin-top: -16px;
+    color: black;
+    border-radius: 86px;
+    float: right;
+    background-color: #d9e3d9;
+    padding: 15px;
+    padding-left: 45px;
+    padding-right: 45px;
+}
+#create {
+    margin-top: 10px;
+    color: black;
+    border-radius: 86px;
+    background-color: #d9e3d9;
+    padding: 15px;
+    padding-left: 45px;
+    padding-right: 45px;
+}

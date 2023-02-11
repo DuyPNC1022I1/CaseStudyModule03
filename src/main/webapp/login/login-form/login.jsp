@@ -28,9 +28,11 @@
 						 </span>
 								<div class="clear"> </div>
 							</div>
-							<input type="submit" value="Login">
-							<input type="submit" value="create" name="sigup" >
+<%--							<input type="submit" value="Login">--%>
+<%--							<input type="submit" value="create" name="sigup" >--%>
 						</form>
+						<a href="/AccountServlet" id="login"> LOG IN </a>
+						<a href="Sigup.jsp" id="create"> CREATE </a>
 						<div class="header-left-top">
 						</div>
 					</div>
