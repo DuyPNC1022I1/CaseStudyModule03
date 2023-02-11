@@ -1,7 +1,8 @@
 package controller;
 
-import model.Item;
-import model.Product;
+import model.*;
+import service.implementService.BrandServiceImplement;
+import service.interfaceService.IProductService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -14,8 +15,8 @@ import java.util.List;
 public class CartServlet extends HttpServlet {
     private final IProductService iProductService = new ProductServiceImplement();
     private final List<Brand> brands = new BrandServiceImplement().getAll();
-//    private final IOrderService iOrderService = new OrderServiceImplement();
-//    private final OrderDetailDAOImplement detailDAOImplement= new OrderDetailDAOImplement();
+    private final IOrderService iOrderService = new OrderServiceImplement();
+    private final OrderDetailDAOImplement detailDAOImplement= new OrderDetailDAOImplement();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         action(request, response);
@@ -48,7 +49,7 @@ public class CartServlet extends HttpServlet {
         }
     }
 
-    private void addToCart(HttpServletRequest request, HttpServletResponse response) {
+    private void addToCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     HttpSession session =request.getSession();
     int id = Integer.parseInt(request.getParameter("id"));
     int quantity = 1;
@@ -80,6 +81,62 @@ public class CartServlet extends HttpServlet {
         session.setAttribute("subtotal", subtotal);
         session.setAttribute("cart", cart);
         request.setAttribute("brands", brands);
-        request.getRequestDispatcher("").forward(request, response);
+        request.getRequestDispatcher("").forward(request,response);
+    }
+    private void removeProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        int id = Integer.parseInt(request.getParameter("id"));
+        Product product = iProductService.findById(id);
+        List<Item> cart = (List<Item>) session.getAttribute("cart");
+        cart.removeIf(item -> item.getProduct().getId() == product.getId());
+        int subtotal = 0;
+        for (Item item:cart) {
+            subtotal += item.getProduct().getPrice() * item.getQuantity();
+        }
+        session.setAttribute("subtotal", subtotal);
+        session.setAttribute("cart",cart);
+        request.setAttribute("brands",brands);
+        request.getRequestDispatcher("/client/view/cart.jsp").forward(request,response);
+    }
+    private void checkoutCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        List<Item> cart = (List<Item>) session.getAttribute("cart");
+        session.setAttribute("cart",cart);
+        request.setAttribute("brands",brands);
+        request.getRequestDispatcher("/client/view/checkout.jsp").forward(request,response);
+    }
+    private void payment(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        int userID = (int) session.getAttribute("userID");
+        String address = request.getParameter("address");
+        String phone = request.getParameter("tel");
+        boolean checkOrder = iOrderService.add(new Order(userID,address,phone),userID);
+        Order order = iOrderService.findById(userID);
+        List<Item> cart = (List<Item>) session.getAttribute("cart");
+        for (Item item:cart) {
+            OrderDetail orderDetail = new OrderDetail(order.getId(),item.getProduct().getId(),item.getQuantity(),(item.getQuantity() * item.getProduct().getPrice()));
+            detailDAOImplement.add(orderDetail);
+            iProductService.reduce(item.getQuantity(),item.getProduct().getId());
+        }
+        session.removeAttribute("cart");
+        request.setAttribute("checkOrder",checkOrder);
+        request.getRequestDispatcher("/client/view/checkout.jsp").forward(request,response);
+    }
+    private void displayCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        List<Item> cart;
+        if(session.getAttribute("cart") == null){
+            cart = new ArrayList<>();
+        } else {
+            cart = (List<Item>) session.getAttribute("cart");
+        }
+        int subtotal = 0;
+        for (Item item:cart) {
+            subtotal += item.getProduct().getPrice() * item.getQuantity();
+        }
+        session.setAttribute("subtotal", subtotal);
+        session.setAttribute("cart",cart);
+        request.setAttribute("brands",brands);
+        request.getRequestDispatcher("/client/view/cart.jsp").forward(request,response);
     }
 }
