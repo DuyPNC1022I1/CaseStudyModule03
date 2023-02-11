@@ -12,7 +12,7 @@ public class AccountService {
             return new ArrayList<>();
         }
 
-        public void addCustomer(Account account) {
+        public void addAccount(Account account) {
             accounts.add(account);
         }
 

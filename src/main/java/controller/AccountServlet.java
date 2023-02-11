@@ -75,7 +75,6 @@ public class AccountServlet extends HttpServlet {
                 throw new RuntimeException(e);
             }
         }
-
         private void createAccount(HttpServletRequest request, HttpServletResponse response) throws RuntimeException {
             int id = Integer.parseInt(request.getParameter("id"));
             String name = request.getParameter("email");
@@ -84,7 +83,7 @@ public class AccountServlet extends HttpServlet {
             String email = request.getParameter("email");
             String address = request.getParameter("address");
             Account account = new Account(id, name, passWord, phone, email, address);
-            this.accountService.addCustomer(account);
+            this.accountService.addAccount(account);
             request.setAttribute("accounts", account);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/Sigup.jsp");
             request.setAttribute("message", "New customer was created");
@@ -94,19 +93,16 @@ public class AccountServlet extends HttpServlet {
                 throw new RuntimeException(e);
             }
         }
-
         private void listAccount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             List<Account> accounts = this.accountService.findAll();
             RequestDispatcher dispatcher = request.getRequestDispatcher("");
             request.setAttribute("account", accounts);
             dispatcher.forward(request, response);
         }
-
         private void showCreateAccount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/Sigup.jsp");
             dispatcher.forward(request, response);
         }
-
     private void showUpdateAccount(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         Account account = this.accountService.findById(id);
