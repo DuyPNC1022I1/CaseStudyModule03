@@ -214,7 +214,7 @@
                                         <p class="product-content__desc">${p.getDescription()}</p>
                                         <div class="product-content__container-price">
                                             Giá:
-                                            <p class="product-content__price">${p.getPrice()}</p>
+                                            <p class="product-content__price">${p.getPrice()} VND</p>
                                         </div>
                                         <div class="product-content__quantity">
                                             Số lượng:
@@ -257,7 +257,7 @@
                                                         <p class="product-content__desc">${p.getDescription()}</p>
                                                         <div class="product-content__container-price">
                                                             Giá:
-                                                            <p class="product-content__price">${p.getPrice()}</p>
+                                                            <p class="product-content__price">${p.getPrice()} VND</p>
                                                         </div>
                                                         <div class="product-content__quantity">
                                                             Số lượng:
@@ -295,7 +295,7 @@
                                                 <p class="product-content__desc">${p.getDescription()}</p>
                                                 <div class="product-content__container-price">
                                                     Giá:
-                                                    <p class="product-content__price">${p.getPrice()}</p>
+                                                    <p class="product-content__price">${p.getPrice()} VND</p>
                                                 </div>
                                                 <div class="product-content__quantity">
                                                     Số lượng:
@@ -331,7 +331,7 @@
                                                 <p class="product-content__desc">${p.getDescription()}</p>
                                                 <div class="product-content__container-price">
                                                     Giá:
-                                                    <p class="product-content__price">${p.getPrice()}</p>
+                                                    <p class="product-content__price">${p.getPrice()} VND</p>
                                                 </div>
                                                 <div class="product-content__quantity">
                                                     Số lượng:

@@ -214,7 +214,7 @@
                                         <p class="product-content__desc">${product.getDescription()}</p>
                                         <div class="product-content__container-price">
                                             Giá:
-                                            <p class="product-content__price">${product.getPrice()}</p>
+                                            <p class="product-content__price">${product.getPrice()} VND</p>
                                         </div>
 
                                         <div class="product-content__quantity">
