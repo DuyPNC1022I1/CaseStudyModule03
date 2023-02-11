@@ -1,12 +1,14 @@
 package service.implementService;
 
+import dao.implementDAO.ProductDAOImplement;
+import dao.interfaceDAO.IProductDAO;
 import model.Product;
 import service.interfaceService.IProductService;
 
 import java.util.List;
 
 public class ProductServiceImplement implements IProductService {
-    private final IProductDAO productDao = new PorductDAOImplement();
+    private final IProductDAO productDao = new ProductDAOImplement();
 
     @Override
     public List<Product> getAll() {

@@ -1,4 +1,4 @@
-package dao.implementServiceDAO;
+package dao.implementDAO;
 
 import connection.DBConnection;
 import dao.interfaceDAO.IUsersDao;

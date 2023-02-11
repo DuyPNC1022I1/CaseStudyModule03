@@ -1,4 +1,4 @@
-package dao.implementServiceDAO;
+package dao.implementDAO;
 
 import connection.DBConnection;
 import dao.interfaceDAO.ICategoryDAO;
@@ -11,13 +11,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryDAOImplement implements ICategoryDAO {
+public class OrderDetailDAOImplement implements ICategoryDAO {
     private final Connection connection = DBConnection.getConnection();
     private static final String QUERY_ALL_CATEGORY = "SELECT * FROM category";
     private static final String QUERY_INSERT_CATEGORY = "INSERT INTO `shop`.`category` (`NAME`) VALUES (?);";
     private static final String QUERY_UPDATE_CATEGORY = "UPDATE `shop`.`category` SET `NAME` = ? " + "WHERE `ID` = ?";
     private static final String QUERY_DELETE_CATEGORY = "DELETE FROM `shop`.`category` WHERE `ID` = ?;";
     private static final String QUERY_FIND_CATEGORY_BY_ID = "SELECT category.name FROM category WHERE ID = ?";
+
     @Override
     public List<Category> getAll() {
         List<Category> categories = new ArrayList<>();
