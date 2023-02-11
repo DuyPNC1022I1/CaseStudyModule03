@@ -1,65 +1,122 @@
 package controller;
 
+import model.Account;
+import service.AccountService;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.*;
+import java.util.List;
 
 @WebServlet(name = "AccountServlet", value = "/AccountServlet")
 public class AccountServlet extends HttpServlet {
-    private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/case_module03.account?useSSL=false";
-    private static final String USER = "database_name";
-    private static final String PASS = "database_pass";
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        Integer userRole = (Integer) session.getAttribute("rol");
-        if (userRole != null) {
-            if (userRole == 1) {
-                response.sendRedirect("admin.jsp");
-            } else if (userRole == 0) {
-                response.sendRedirect("user.jsp");
+        AccountService accountService = new AccountService();
+
+        @Override
+        protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+            String action = request.getParameter("action");
+            if (action == null) {
+                action = "";
             }
-        } else {
-            String username = request.getParameter("username");
-            String password = request.getParameter("password");
-
-            if (username != null && password != null) {
-                try {
-                    Class.forName(JDBC_DRIVER);
-                    Connection connection = DriverManager.getConnection(DB_URL, USER, PASS);
-                    PreparedStatement statement = connection.prepareStatement(
-                            "SELECT rol FROM user WHERE name = ? AND pass = ?");
-                    statement.setString(1, username);
-                    statement.setString(2, password);
-
-                    ResultSet result = statement.executeQuery();
-                    if (result.next()) {
-                        int role = result.getInt("rol");
-                        session.setAttribute("rol", role);
-                        if (role == 1) {
-                            response.sendRedirect("admin.jsp");
-                        } else if (role == 0) {
-                            response.sendRedirect("user.jsp");
-                        }
-                    } else {
-                        response.sendRedirect("index.jsp");
-                    }
-                    connection.close();
-                } catch (SQLException | ClassNotFoundException e) {
-                    throw new ServletException("Error accessing database", e);
-                }
-            } else {
-                response.sendRedirect("login.jsp");
+            switch (action) {
+                case "create":
+                    showCreateAccount(request, response);
+                    break;
+                case "update":
+                    showUpdateAccount(request, response);
+                    break;
             }
         }
-    }
 
-}
+
+        @Override
+        protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+            String action = request.getParameter("action");
+            if (action == null) {
+                action = "";
+            }
+            switch (action) {
+                case "create":
+                    createAccount(request, response);
+                    break;
+                case "update":
+                    updateAccount(request, response);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void updateAccount(HttpServletRequest request, HttpServletResponse response) {
+            int id = Integer.parseInt(request.getParameter("id"));
+            String name = request.getParameter("name");
+            String passWord = request.getParameter("password");
+            String phone = request.getParameter("phone");
+            String email = request.getParameter("email");
+            String address = request.getParameter("address");
+            Account account = new Account(id, name , passWord, phone, email, address);
+            RequestDispatcher dispatcher;
+            account.setName();
+            account.setPass(passWord);
+            account.setPhone(phone);
+            account.setEmail(email);
+            account.setAddress(address);
+            this.accountService.updateCustomer( id , account);
+            request.setAttribute("accounts", account);
+            request.setAttribute("message", "Update success");
+            dispatcher = request.getRequestDispatcher("/forgotpassword.jsp");
+            try {
+                dispatcher.forward(request, response);
+            } catch (ServletException | IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        private void createAccount(HttpServletRequest request, HttpServletResponse response) throws RuntimeException {
+            int id = Integer.parseInt(request.getParameter("id"));
+            String name = request.getParameter("email");
+            String passWord = request.getParameter("password");
+            String phone = request.getParameter("phone");
+            String email = request.getParameter("email");
+            String address = request.getParameter("address");
+            Account account = new Account(id, name, passWord, phone, email, address);
+            this.accountService.addAccount(account);
+            request.setAttribute("accounts", account);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/Sigup.jsp");
+            request.setAttribute("message", "New customer was created");
+            try {
+                dispatcher.forward(request, response);
+            } catch (ServletException | IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        private void listAccount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+            List<Account> accounts = this.accountService.findAll();
+            RequestDispatcher dispatcher = request.getRequestDispatcher("");
+            request.setAttribute("account", accounts);
+            dispatcher.forward(request, response);
+        }
+        private void showCreateAccount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/Sigup.jsp");
+            dispatcher.forward(request, response);
+        }
+    private void showUpdateAccount(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Account account = this.accountService.findById(id);
+        RequestDispatcher dispatcher;
+        if (account == null) {
+            dispatcher = request.getRequestDispatcher("");
+        } else {
+            request.setAttribute("customers", account);
+            dispatcher = request.getRequestDispatcher("/updatePassWord.jsp");
+        }
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException | IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+        }
