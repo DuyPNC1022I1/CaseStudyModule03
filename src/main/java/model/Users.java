@@ -18,6 +18,10 @@ public class Users {
     private Role role;
     private Status status;
 
+    public Users(int id, String username, String password, String firstname, String lastname, String address, String telephone, String email, Date birthday, model.enums.Role role, model.enums.Status status) {
+
+    }
+
     public int getId() {
         return id;
     }
