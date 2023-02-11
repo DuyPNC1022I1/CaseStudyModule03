@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: DELL
@@ -24,7 +25,7 @@
         <a href="/admin" class="modal-background"></a>
         <div class="container">
             <h1 class="container-header">Thêm Sản phẩm</h1>
-            <form class="container-form" action="/admin?action=createProduct" method="post">
+            <form class="container-form" action="/admin?action=create" method="post">
                 <div class="container-form__item">
                     <label class="container-form__item-label" for="name">Tên sản phẩm: </label>
                     <input class="container-form__item-input" type="text" name="name" id="name" placeholder="Nhập tên sản phẩm...">
@@ -42,12 +43,12 @@
 
                 <div class="container-form__item">
                     <label class="container-form__item-label" for="desc">Mô tả: </label>
-                    <input class="container-form__item-input" type="text" name="desc" id="desc" placeholder="Nhập mô tả sản phẩm...">
+                    <input class="container-form__item-input" type="text" name="description" id="desc" placeholder="Nhập mô tả sản phẩm...">
                 </div>
 
                 <div class="container-form__item">
                     <label class="container-form__item-label" for="img">Ảnh sản phẩm: </label>
-                    <input class="container-form__item-input" type="text" name="img" id="img" placeholder="Link ảnh sản phẩm...">
+                    <input class="container-form__item-input" type="text" name="image" id="img" placeholder="Link ảnh sản phẩm...">
                 </div>
 
                 <div class="container-form__item container-form__select">
@@ -55,8 +56,13 @@
                         <p class="container-form__item-label container-form__select-header">Thương hiệu: </p>
                     </div>
                     <select name="brand" id="brand">
+<<<<<<< HEAD
                         <c:forEach items="${requestScope['brands']}" var="brand">
                             <option>${brand.getName()}</option>
+=======
+                        <c:forEach items="${brands}" var="brand">
+                            <option value="${brand.getName()}">${brand.getName()}</option>
+>>>>>>> 17f7a4a67521dc1dded8779fda94b148f858909c
                         </c:forEach>
                     </select>
                 </div>

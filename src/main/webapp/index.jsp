@@ -129,7 +129,9 @@
                                 </li>
                             </c:forEach>
                         </ul>
-                        <input type="submit" value="Tìm kiếm">
+                        <div class="filter__category-container-btn">
+                            <input class="filter__category-btn" type="submit" value="Tìm kiếm">
+                        </div>
                     </form>
                     <form action="/user?action=searchByPrice" method="post" class="filter__category">
                         <p class="filter__category-head">
@@ -147,7 +149,9 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="submit" value="Tìm kiếm">
+                        <div class="filter__category-container-btn">
+                            <input class="filter__category-btn" type="submit" value="Tìm kiếm">
+                        </div>
                     </form>
                 </div>
 
