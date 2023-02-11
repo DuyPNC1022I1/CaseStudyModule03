@@ -90,7 +90,7 @@ public class UserServlet extends HttpServlet {
 //        request.setAttribute("products", products);
 //        rd.forward(request, response);
         List<Product> products = this.productDAO.display();
-        List<Brand>  brands = this.brandDAO.display();
+        List<Brand> brands = this.brandDAO.display();
         request.setAttribute("products", products);
         request.setAttribute("brands", brands);
         RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");

@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="./assets/css/grid.css">
     <link rel="stylesheet" href="./assets/css/main.css">
     <link rel="stylesheet" href="./assets/font-icon/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;700&family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;700&family=Roboto:wght@100;300;400;500;700&display=swap"
+          rel="stylesheet">
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
 </head>
 <body>
@@ -24,7 +25,8 @@
                 </a>
                 <div class="col l-5 header-search">
                     <form class="header-search__form" action="/user?action=searchByName" method="post">
-                        <input class="input-search" name="searchByName" type="text" placeholder="Nhập từ khoá tìm kiếm...">
+                        <input class="input-search" name="searchByName" type="text"
+                               placeholder="Nhập từ khoá tìm kiếm...">
                         <button class="btn-search">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
@@ -121,7 +123,8 @@
                         <ul class="filter__category-list">
                             <c:forEach items="${brands}" var="brand">
                                 <li class="filter__category-item">
-                                    <input class="filter__category-item-check" type="radio" name="" value="${brand.getId()}">
+                                    <input class="filter__category-item-check" type="radio" name=""
+                                           value="${brand.getId()}">
                                     <p>${brand.getName()}</p>
                                 </li>
                             </c:forEach>
@@ -217,7 +220,14 @@
                                             Số lượng:
                                             <div class="product-quantity">${p.getQuantity()}</div>
                                         </div>
-                                        <div class="product-content__status">Còn hàng</div>
+                                        <c:choose>
+                                            <c:when test="${p.getQuantity() > 0}">
+                                                <div class="product-content__status">Còn hàng</div>
+                                            </c:when>
+                                            <c:when test="${p.getQuantity() == 0}">
+                                                <div style="background-color: red" class="product-content__status">Hết hàng</div>
+                                            </c:when>
+                                        </c:choose>
                                     </div>
                                 </div>
                             </div>
@@ -229,30 +239,37 @@
                                 <p class="text-aler__search">Không tìm thấy sản phẩm!</p>
                             </c:when>
                             <c:when test='${requestScope["flag"] == true}'>
-                                    <c:forEach items="${productsByName}" var="p">
-                                        <div class="col l-3" >
-                                            <div class="product-container">
-                                                <div class="product-container__img">
-                                                    <img class="product-img"
-                                                         src="./assets/img/category/atlantic/1462484998_dong-ho-thuy-sy-phien-ban-gioi-han9.jpg"
-                                                         alt="">
+                                <c:forEach items="${productsByName}" var="p">
+                                    <div class="col l-3">
+                                        <div class="product-container">
+                                            <div class="product-container__img">
+                                                <img class="product-img"
+                                                     src="./assets/img/category/atlantic/1462484998_dong-ho-thuy-sy-phien-ban-gioi-han9.jpg"
+                                                     alt="">
+                                            </div>
+                                            <div class="product-content">
+                                                <h3 class="product-content__name">${p.getName()}</h3>
+                                                <p class="product-content__desc">${p.getDescription()}</p>
+                                                <div class="product-content__container-price">
+                                                    Giá:
+                                                    <p class="product-content__price">${p.getPrice()}</p>
                                                 </div>
-                                                <div class="product-content">
-                                                    <h3 class="product-content__name">${p.getName()}</h3>
-                                                    <p class="product-content__desc">${p.getDescription()}</p>
-                                                    <div class="product-content__container-price">
-                                                        Giá:
-                                                        <p class="product-content__price">${p.getPrice()}</p>
-                                                    </div>
-                                                    <div class="product-content__quantity">
-                                                        Số lượng:
-                                                        <div class="product-quantity">${p.getQuantity()}</div>
-                                                    </div>
-                                                    <div class="product-content__status">Còn hàng</div>
+                                                <div class="product-content__quantity">
+                                                    Số lượng:
+                                                    <div class="product-quantity">${p.getQuantity()}</div>
                                                 </div>
+                                                <c:choose>
+                                                    <c:when test="${p.getQuantity() > 0}">
+                                                        <div class="product-content__status">Còn hàng</div>
+                                                    </c:when>
+                                                    <c:when test="${p.getQuantity() == 0}">
+                                                        <div style="background-color: red" class="product-content__status">Hết hàng</div>
+                                                    </c:when>
+                                                </c:choose>
                                             </div>
                                         </div>
-                                    </c:forEach>
+                                    </div>
+                                </c:forEach>
                                 </table>
                             </c:when>
                         </c:choose>
