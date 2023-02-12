@@ -247,11 +247,17 @@
                                             </c:when>
                                         </c:choose>
                                         <div class="product-btn__action">
-                                            <a class="product-btn__action-btn"
-                                               href="/admin?action=showUpdate&id=${product.getId()}">Sửa</a>
-
-                                            <a class="product-btn__action-btn"
-                                               href="/admin?action=delete&id=${product.getId()}">Xoá</a>
+                                            <a class="product-btn__action-btn" href="/admin?action=showUpdate&id=${product.getId()}">Sửa</a>
+                                            <form class="product-btn__action-btn" action="/admin?action=delete&id=${product.getId()}" method="post">
+                                                <input type="submit" onclick="a()" value="Xóa">
+                                                <script type="text/javascript">
+                                                    function a() {
+                                                        if (confirm("Bấm vào đây để xóa sản phẩm đã chọn!!!")) {
+                                                            this.form.submit();
+                                                        }
+                                                    }
+                                                </script>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -428,7 +434,8 @@
                     <div class="col l-3">
                         <ul class="footer__nav">
                             <li class="footer__nav-item">Địa chỉ</li>
-                            <li class="footer__nav-item">Nhà số 23, Lô TT-01, Khu đô thị MonCity, P. Hàm Nghi, Hanoi</li>
+                            <li class="footer__nav-item">Nhà số 23, Lô TT-01, Khu đô thị MonCity, P. Hàm Nghi, Hanoi
+                            </li>
                         </ul>
                     </div>
                 </div>
