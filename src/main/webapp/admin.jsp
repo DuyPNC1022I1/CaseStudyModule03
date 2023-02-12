@@ -248,12 +248,15 @@
                                         </c:choose>
                                         <div class="product-btn__action">
                                             <a class="product-btn__action-btn" href="/admin?action=showUpdate&id=${product.getId()}">Sửa</a>
-                                            <form class="product-btn__action-btn" action="/admin?action=delete&id=${product.getId()}" method="post">
-                                                <input type="submit" onclick="a()" value="Xóa">
+                                            <form class="product-btn__action-btn" action="/admin?action=delete&id=${product.getId()}" method="post" onsubmit=" return a()">
+                                                <input type="submit" value="Xóa">
                                                 <script type="text/javascript">
                                                     function a() {
                                                         if (confirm("Xác nhận xóa sản phẩm đã chọn!!!")) {
-                                                            this.form.submit();
+                                                            return true;
+                                                        }
+                                                        else {
+                                                            return false;
                                                         }
                                                     }
                                                 </script>
