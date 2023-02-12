@@ -557,3 +557,22 @@
     justify-content: end;
     margin-top: 20px;
 }
+
+.product-container-btn {
+    display: flex;
+    justify-content: end;
+    padding: 10px;
+}
+
+.btn-link {
+    text-decoration: none;
+    font-size: 1.6rem;
+    padding: 10px 20px;
+    background-color: var(--second-color);
+    color: var(--text-color);
+    border-radius: 20px;
+}
+
+.btn-link:hover {
+    background-color: rgba(255, 229, 0, 0.8);
+}
