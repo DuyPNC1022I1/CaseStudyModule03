@@ -18,7 +18,8 @@
     <link rel="stylesheet" href="./assets/css/grid.css">
     <link rel="stylesheet" href="./assets/css/main.css">
     <link rel="stylesheet" href="./assets/font-icon/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;700&family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;700&family=Roboto:wght@100;300;400;500;700&display=swap"
+          rel="stylesheet">
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
 </head>
 <body>
@@ -27,11 +28,12 @@
         <div class="grid wide">
             <div class="row">
                 <a href="/admin" class="col l-2 header-logo">
-                    <img class="header-logo__img" src="./assets/img/logo/logo1.png" alt="">
+                    <img class="header-logo__img" src="./assets/img/logo/logo5.PNG" alt="">
                 </a>
                 <div class="col l-5 header-search">
                     <form class="header-search__form" action="/admin?action=searchByName" method="post">
-                        <input class="input-search" type="text" name="searchByName" placeholder="Nhập từ khoá tìm kiếm...">
+                        <input class="input-search" type="text" name="searchByName"
+                               placeholder="Nhập từ khoá tìm kiếm...">
                         <button class="btn-search">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
@@ -85,16 +87,20 @@
                     <div class="header__navbar">
                         <div class="row">
                             <div class="col l-3 header__navbar-item">
-                                <a href="https://www.dangquangwatch.vn/tin-tuc/226/Dang-Quang-Watch-nha-nhap-khau-dong-ho-chinh-hang-Thuy-Sy.html" class="header__navbar-link">Giới thiệu</a>
+                                <a href="https://www.dangquangwatch.vn/tin-tuc/226/Dang-Quang-Watch-nha-nhap-khau-dong-ho-chinh-hang-Thuy-Sy.html"
+                                   class="header__navbar-link">Giới thiệu</a>
                             </div>
                             <div class="col l-3 header__navbar-item">
-                                <a href="https://www.dangquangwatch.vn/chinh-sach-chung/5/3.-Chinh-sach-bao-mat.html" class="header__navbar-link">Chính sách bảo mật</a>
+                                <a href="https://www.dangquangwatch.vn/chinh-sach-chung/5/3.-Chinh-sach-bao-mat.html"
+                                   class="header__navbar-link">Chính sách bảo mật</a>
                             </div>
                             <div class="col l-3 header__navbar-item">
-                                <a href="" class="header__navbar-link">Chính sách bảo hành</a>
+                                <a href="https://www.dangquangwatch.vn/chinh-sach-chung/2/1.-Chinh-sach-bao-hanh"
+                                   class="header__navbar-link">Chính sách bảo hành</a>
                             </div>
                             <div class="col l-3 header__navbar-item">
-                                <a href="https://www.dangquangwatch.vn/tin-tuc-dong-ho.html" class="header__navbar-link">Tin tức sự kiện</a>
+                                <a href="https://www.dangquangwatch.vn/tin-tuc-dong-ho.html"
+                                   class="header__navbar-link">Tin tức sự kiện</a>
                             </div>
                         </div>
                     </div>
@@ -128,7 +134,8 @@
                         <ul class="filter__category-list">
                             <c:forEach items="${brands}" var="brand">
                                 <li class="filter__category-item">
-                                    <input class="filter__category-item-check" type="radio" name="searchByBrand" value="${brand.getName()}">
+                                    <input class="filter__category-item-check" type="radio" name="searchByBrand"
+                                           value="${brand.getName()}">
                                     <p>${brand.getName()}</p>
                                 </li>
                             </c:forEach>
@@ -213,7 +220,9 @@
                             <div class="col l-3">
                                 <div class="product-container">
                                     <div class="product-container__img">
-                                        <img class="product-img" src="./assets/img/category/atlantic/1462484998_dong-ho-thuy-sy-phien-ban-gioi-han9.jpg" alt="">
+                                        <img class="product-img"
+                                             src="./assets/img/category/atlantic/1462484998_dong-ho-thuy-sy-phien-ban-gioi-han9.jpg"
+                                             alt="">
                                     </div>
                                     <div class="product-content">
                                         <h3 class="product-content__name">${product.getName()}</h3>
@@ -232,13 +241,17 @@
                                                 <div class="product-content__status">Còn hàng</div>
                                             </c:when>
                                             <c:when test="${product.getQuantity() == 0}">
-                                                <div style="background-color: red" class="product-content__status">Hết hàng</div>
+                                                <div style="background-color: red" class="product-content__status">Hết
+                                                    hàng
+                                                </div>
                                             </c:when>
                                         </c:choose>
                                         <div class="product-btn__action">
-                                            <a class="product-btn__action-btn" href="/admin?action=showUpdate&id=${product.getId()}">Sửa</a>
+                                            <a class="product-btn__action-btn"
+                                               href="/admin?action=showUpdate&id=${product.getId()}">Sửa</a>
 
-                                            <a class="product-btn__action-btn" href="/admin?action=delete&id=${product.getId()}">Xoá</a>
+                                            <a class="product-btn__action-btn"
+                                               href="/admin?action=delete&id=${product.getId()}">Xoá</a>
                                         </div>
                                     </div>
                                 </div>
@@ -329,7 +342,8 @@
                             <c:when test="${requestScope['choose'] == 3}">
                                 <c:choose>
                                     <c:when test="${requestScope['err'] == false}">
-                                        <p class="text-aler__search">Nhập sai dữ liệu! Vui lòng nhập lại dữ liệu dạng số!</p>
+                                        <p class="text-aler__search">Nhập sai dữ liệu! Vui lòng nhập lại dữ liệu dạng
+                                            số!</p>
                                     </c:when>
                                     <c:when test="${requestScope['flag'] == false}">
                                         <p class="text-aler__search">Không tìm thấy sản phẩm có giá vừa nhập!</p>
@@ -388,7 +402,7 @@
                 <div class="row">
                     <div class="col l-3 footer-content__logo">
                         <div class="footer-content__name-store">
-                            Nhóm 1 - C1022MĐ
+                            NHÓM 01-C1022I1
                         </div>
                         <p class="footer-content__member">DUY - Mạnh - Cường - Thắng</p>
                     </div>
@@ -403,11 +417,19 @@
                     </div>
 
                     <div class="col l-3">
-
+                        <ul class="footer__nav">
+                            <li class="footer__nav-item">Tổng đài 1900.9999 (8h - 21h)</li>
+                            <li class="footer__nav-item">Gọi mua 099.999.9999 (8h - 21h)</li>
+                            <li class="footer__nav-item">Gọi mua 099.888.8888 (8h - 21h)</li>
+                            <li class="footer__nav-item">Bảo hành Toàn quốc 024.999.8888</li>
+                        </ul>
                     </div>
 
                     <div class="col l-3">
-
+                        <ul class="footer__nav">
+                            <li class="footer__nav-item">Địa chỉ</li>
+                            <li class="footer__nav-item">Nhà số 23, Lô TT-01, Khu đô thị MonCity, P. Hàm Nghi, Hanoi</li>
+                        </ul>
                     </div>
                 </div>
             </div>
