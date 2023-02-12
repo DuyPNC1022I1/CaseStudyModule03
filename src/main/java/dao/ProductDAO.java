@@ -10,9 +10,9 @@ import java.util.List;
 
 public class ProductDAO implements Crud<Product> {
     private BrandDAO brandDAO;
-    private String jdbcUrl = "jdbc:mysql://localhost:3306/case_module03?allowPublicKeyRetrieval=true&useSSL=false";
+    private String jdbcUrl = "jdbc:mysql://localhost:3306/case_module03";
     private String jdbcUsername = "root";
-    private String jdbcPassword = "123456";
+    private String jdbcPassword = "12345678";
 
     public ProductDAO() {
         this.brandDAO = new BrandDAO();

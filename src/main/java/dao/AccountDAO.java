@@ -11,7 +11,7 @@ import java.util.List;
 public class AccountDAO {
     static String  jdbcURL = "jdbc:mysql://localhost:3306/case_module03.account";
     static String jdbcUsername = "root";
-    static String jdbcPassword = "123456";
+    static String jdbcPassword = "12345678";
 
     public Account checkLogin(String name, String password) throws ClassNotFoundException {
         String query = "select * from user where Email = ? and Pass = ?";
