@@ -1,12 +1,12 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
-  User: DELL
-  Date: 2/10/2023
-  Time: 11:55 AM
+  User: THIS PC
+  Date: 2/12/2023
+  Time: 4:26 AM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +18,8 @@
     <link rel="stylesheet" href="./assets/css/grid.css">
     <link rel="stylesheet" href="./assets/css/main.css">
     <link rel="stylesheet" href="./assets/font-icon/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;700&family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;700&family=Roboto:wght@100;300;400;500;700&display=swap"
+          rel="stylesheet">
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
 </head>
 <body>
@@ -26,12 +27,13 @@
     <div id="header">
         <div class="grid wide">
             <div class="row">
-                <a href="/admin" class="col l-2 header-logo">
+                <a href="/user" class="col l-2 header-logo">
                     <img class="header-logo__img" src="./assets/img/logo/logo1.png" alt="">
                 </a>
                 <div class="col l-5 header-search">
-                    <form class="header-search__form" action="/admin?action=searchByName" method="post">
-                        <input class="input-search" type="text" name="searchByName" placeholder="Nhập từ khoá tìm kiếm...">
+                    <form class="header-search__form" action="/user?action=searchByName" method="post">
+                        <input class="input-search" name="searchByName" type="text"
+                               placeholder="Nhập từ khoá tìm kiếm...">
                         <button class="btn-search">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
@@ -59,7 +61,7 @@
                         </div>
                         <div class="col l-4 header-top__right-item">
                             <div class="header__container">
-                                <a href="" class="header-top__right-login">Admin</a>
+                                <a class="header-top__right-login">User</a>
                                 <a href="/view" class="header-top__right-register">Log out</a>
                             </div>
                         </div>
@@ -73,9 +75,9 @@
                     <ul class="header-botom__item-menu">
 
                         <!-- Phần lấy hãng đồng hồ -->
-                        <c:forEach items="${brands}" var="brand">
+                        <c:forEach items="${brands}" var="b">
                             <li class="menu-item">
-                                <a class="menu-item__link" href="">${brand.getName()}</a>
+                                <a class="menu-item__link" href="#">${b.getName()}</a>
                             </li>
                         </c:forEach>
 
@@ -85,13 +87,13 @@
                     <div class="header__navbar">
                         <div class="row">
                             <div class="col l-3 header__navbar-item">
-                                <a href="https://www.dangquangwatch.vn/tin-tuc/226/Dang-Quang-Watch-nha-nhap-khau-dong-ho-chinh-hang-Thuy-Sy.html" class="header__navbar-link">Giới thiệu</a>
+                                <a href="#" class="header__navbar-link">Giới thiệu</a>
                             </div>
                             <div class="col l-3 header__navbar-item">
-                                <a href="https://www.dangquangwatch.vn/chinh-sach-chung/5/3.-Chinh-sach-bao-mat.html" class="header__navbar-link">Chính sách bảo mật</a>
+                                <a href="#" class="header__navbar-link">Chính sách bảo mật</a>
                             </div>
                             <div class="col l-3 header__navbar-item">
-                                <a href="" class="header__navbar-link">Chính sách bảo hành</a>
+                                <a href="#" class="header__navbar-link">Chính sách bảo hành</a>
                             </div>
                             <div class="col l-3 header__navbar-item">
                                 <a href="https://www.dangquangwatch.vn/tin-tuc-dong-ho.html" class="header__navbar-link">Tin tức sự kiện</a>
@@ -121,14 +123,15 @@
                         <i class="filter__header-icon fa-solid fa-filter"></i>
                         <h3>Bộ lọc tìm kiếm</h3>
                     </div>
-                    <form action="/admin?action=searchByBrand" method="post" class="filter__category">
+                    <form action="/user?action=searchByBrand" method="post" class="filter__category">
                         <p class="filter__category-head">
-                            Theo Hãng:
+                            Theo thương hiệu:
                         </p>
                         <ul class="filter__category-list">
                             <c:forEach items="${brands}" var="brand">
                                 <li class="filter__category-item">
-                                    <input class="filter__category-item-check" type="radio" name="searchByBrand" value="${brand.getName()}">
+                                    <input class="filter__category-item-check" type="radio" name="searchByBrand"
+                                           value="${brand.getName()}">
                                     <p>${brand.getName()}</p>
                                 </li>
                             </c:forEach>
@@ -137,7 +140,7 @@
                             <input class="filter__category-btn" type="submit" value="Tìm kiếm">
                         </div>
                     </form>
-                    <form action="/admin?action=searchByPrice" method="post" class="filter__category">
+                    <form action="/user?action=searchByPrice" method="post" class="filter__category">
                         <p class="filter__category-head">
                             Theo Khoảng Giá:
                         </p>
@@ -163,14 +166,14 @@
                     <div class="row content__container-nav">
                         <div class="col l-3">
                             <div class="content__container-nav-item">
-                                <a class="content__container-nav-link" href="">
+                                <a class="content__container-nav-link" href="#">
                                     <img src="./assets/img/category/atlantic/at_logo.png" alt="">
                                 </a>
                             </div>
                         </div>
                         <div class="col l-3">
                             <div class="content__container-nav-item">
-                                <a class="content__container-nav-link" href="">
+                                <a class="content__container-nav-link" href="#">
                                     <img src="./assets/img/category/diamond/dm_logo.png" alt="">
                                 </a>
                             </div>
@@ -184,7 +187,7 @@
                         </div>
                         <div class="col l-3">
                             <div class="content__container-nav-item">
-                                <a class="content__container-nav-link" href="">
+                                <a class="content__container-nav-link" href="#">
                                     <img src="./assets/img/category/philippe-auguste/pa_logo.png" alt="">
                                 </a>
                             </div>
@@ -208,42 +211,41 @@
                     <div class="row">
 
                         <!-- DANH SÁCH SẢN PHẨM -->
-                        <!-- phần truyền database Product -->
-                        <c:forEach items="${products}" var="product">
+                        <!-- Hiển thị tất cả sản phẩm -->
+                        <c:forEach items="${products}" var="p">
                             <div class="col l-3">
                                 <div class="product-container">
                                     <div class="product-container__img">
-                                        <img class="product-img" src="./assets/img/category/atlantic/1462484998_dong-ho-thuy-sy-phien-ban-gioi-han9.jpg" alt="">
+                                        <img class="product-img"
+                                             src="./assets/img/category/atlantic/1462484998_dong-ho-thuy-sy-phien-ban-gioi-han9.jpg"
+                                             alt="">
                                     </div>
                                     <div class="product-content">
-                                        <h3 class="product-content__name">${product.getName()}</h3>
-                                        <p class="product-content__desc">${product.getDescription()}</p>
+                                        <h3 class="product-content__name">${p.getName()}</h3>
+                                        <p class="product-content__desc">${p.getDescription()}</p>
                                         <div class="product-content__container-price">
                                             Giá:
-                                            <p class="product-content__price">${product.getPrice()} VND</p>
+                                            <p class="product-content__price">${p.getPrice()} VND</p>
                                         </div>
-
                                         <div class="product-content__quantity">
                                             Số lượng:
-                                            <div class="product-quantity">${product.getQuantity()}</div>
+                                            <div class="product-quantity">${p.getQuantity()}</div>
                                         </div>
                                         <c:choose>
-                                            <c:when test="${product.getQuantity() > 0}">
+                                            <c:when test="${p.getQuantity() > 0}">
                                                 <div class="product-content__status">Còn hàng</div>
                                             </c:when>
-                                            <c:when test="${product.getQuantity() == 0}">
-                                                <div style="background-color: red" class="product-content__status">Hết hàng</div>
+                                            <c:when test="${p.getQuantity() == 0}">
+                                                <div style="background-color: red" class="product-content__status">Hết
+                                                    hàng
+                                                </div>
                                             </c:when>
                                         </c:choose>
-                                        <div class="product-btn__action">
-                                            <a class="product-btn__action-btn" href="/admin?action=showUpdate&id=${product.getId()}">Sửa</a>
-
-                                            <a class="product-btn__action-btn" href="/admin?action=delete&id=${product.getId()}">Xoá</a>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </c:forEach>
+
                         <%--Hiển thị sản phẩm tìm kiếm--%>
                         <c:choose>
                             <%--Phần hiển thị search by name--%>
@@ -372,10 +374,8 @@
                                 </c:choose>
                             </c:when>
                         </c:choose>
-                    </div>
 
-                    <div class="row content__container-btn">
-                        <a href="/admin?action=showCreate" class="btn">Thêm Sản Phẩm</a>
+
                     </div>
                 </div>
             </div>

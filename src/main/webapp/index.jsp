@@ -20,11 +20,11 @@
     <div id="header">
         <div class="grid wide">
             <div class="row">
-                <a href="/user" class="col l-2 header-logo">
+                <a href="/view" class="col l-2 header-logo">
                     <img class="header-logo__img" src="./assets/img/logo/logo1.png" alt="">
                 </a>
                 <div class="col l-5 header-search">
-                    <form class="header-search__form" action="/user?action=searchByName" method="post">
+                    <form class="header-search__form" action="/view?action=searchByName" method="post">
                         <input class="input-search" name="searchByName" type="text"
                                placeholder="Nhập từ khoá tìm kiếm...">
                         <button class="btn-search">
@@ -54,8 +54,8 @@
                         </div>
                         <div class="col l-4 header-top__right-item">
                             <div class="header__container">
-                                <a href="/user?action=login" class="header-top__right-login">Đăng Nhập</a>
-                                <a href="/user?action=createAccount" class="header-top__right-register">Đăng Ký</a>
+                                <a href="/view?action=showLogin" class="header-top__right-login">Đăng Nhập</a>
+                                <a href="/view?action=showCreate" class="header-top__right-register">Đăng Ký</a>
                             </div>
                         </div>
                     </div>
@@ -89,7 +89,7 @@
                                 <a href="#" class="header__navbar-link">Chính sách bảo hành</a>
                             </div>
                             <div class="col l-3 header__navbar-item">
-                                <a href="#" class="header__navbar-link">Tin tức sự kiện</a>
+                                <a href="https://www.dangquangwatch.vn/tin-tuc-dong-ho.html" class="header__navbar-link">Tin tức sự kiện</a>
                             </div>
                         </div>
                     </div>
@@ -116,9 +116,9 @@
                         <i class="filter__header-icon fa-solid fa-filter"></i>
                         <h3>Bộ lọc tìm kiếm</h3>
                     </div>
-                    <form action="/user?action=searchByBrand" method="post" class="filter__category">
+                    <form action="/view?action=searchByBrand" method="post" class="filter__category">
                         <p class="filter__category-head">
-                            Theo Hãng:
+                            Theo thương hiệu:
                         </p>
                         <ul class="filter__category-list">
                             <c:forEach items="${brands}" var="brand">
@@ -133,7 +133,7 @@
                             <input class="filter__category-btn" type="submit" value="Tìm kiếm">
                         </div>
                     </form>
-                    <form action="/user?action=searchByPrice" method="post" class="filter__category">
+                    <form action="/view?action=searchByPrice" method="post" class="filter__category">
                         <p class="filter__category-head">
                             Theo Khoảng Giá:
                         </p>
@@ -238,7 +238,6 @@
                                 </div>
                             </div>
                         </c:forEach>
-
                         <%--Hiển thị sản phẩm tìm kiếm--%>
                         <c:choose>
                             <%--Phần hiển thị search by name--%>
@@ -367,8 +366,6 @@
                                 </c:choose>
                             </c:when>
                         </c:choose>
-
-
                     </div>
                 </div>
             </div>

@@ -24,6 +24,5 @@ public class LogOutServlet extends HttpServlet {
         HttpSession session = request.getSession();
         session.removeAttribute("account");
         response.sendRedirect("home");
-
     }
 }

@@ -1,8 +1,9 @@
 package controller;
 
+import dao.AccountDAO;
 import dao.BrandDAO;
 import dao.ProductDAO;
-import model.Brand;
+import model.Account;
 import model.Product;
 
 import javax.servlet.*;
@@ -12,8 +13,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "UserServlet", value = "/user")
-public class UserServlet extends HttpServlet {
+@WebServlet(name = "ViewServlet", value = "/view")
+public class ViewServlet extends HttpServlet {
     private ProductDAO productDAO;
     private BrandDAO brandDAO;
 
@@ -30,10 +31,16 @@ public class UserServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
-            case "buy":
+            case "showLogin":
+                showLogin(request,response);
+                break;
+            case "logOut":
+                logOut(request, response);
+            case "showCreate":
+                showCreate(request, response);
                 break;
             default:
-                showProduct(request, response);
+                display(request, response);
                 break;
         }
     }
@@ -45,6 +52,13 @@ public class UserServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
+            case "login":
+                try {
+                    login(request, response);
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+                break;
             case "searchByBrand":
                 searchByBrand(request, response);
                 break;
@@ -55,26 +69,47 @@ public class UserServlet extends HttpServlet {
                 searchByName(request, response);
                 break;
             default:
-                showProduct(request, response);
+                display(request, response);
                 break;
         }
     }
 
-    private void showProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void display(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("products", this.productDAO.display());
         request.setAttribute("brands", this.brandDAO.display());
-        RequestDispatcher rd = request.getRequestDispatcher("/user.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
         rd.forward(request, response);
-
     }
 
-    private void showBrand(HttpServletRequest request) throws ServletException, IOException {
-        List<Brand> brands = this.brandDAO.display();
-        request.setAttribute("brands", brands);
-        RequestDispatcher rd = request.getRequestDispatcher("/user.jsp");
+    private void showLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.sendRedirect("login/login-form/login.jsp");
     }
 
-    //Tìm + Hiển thị sản phẩm theo tên
+    public void login(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, ServletException, IOException {
+        String name = request.getParameter("name");
+        String password = request.getParameter("password");
+        AccountDAO accountDAO = new AccountDAO();
+        Account account = accountDAO.checkLogin(name, password);
+        if (account == null){
+            request.setAttribute("messLogin","Wrong username or Password, enter again");
+            RequestDispatcher rq = request.getRequestDispatcher("login/login-form/login.jsp");
+            rq.forward(request, response);
+        }else {
+            HttpSession session = request.getSession();
+            session.setAttribute("account",account);
+            response.sendRedirect("home");
+        }
+    }
+
+    public void logOut(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession();
+        session.removeAttribute("account");
+        response.sendRedirect("home");
+    }
+    private void showCreate(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.sendRedirect("login/login-form/Sigup.jsp");
+    }
+
     private void searchByName(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String name = request.getParameter("searchByName");
         //Tạo biến điều kiện để hiển thị kết quả
@@ -93,7 +128,7 @@ public class UserServlet extends HttpServlet {
         request.setAttribute("flag", flag);
         request.setAttribute("brands", brandDAO.display());
         request.setAttribute("productsByName", productsByName);
-        RequestDispatcher rd = request.getRequestDispatcher("/user.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
         rd.forward(request, response);
     }
 
@@ -117,7 +152,7 @@ public class UserServlet extends HttpServlet {
         request.setAttribute("flag", flag);
         request.setAttribute("choose", choose);
         request.setAttribute("productsByBrand", productsByBrand);
-        RequestDispatcher rd = request.getRequestDispatcher("/user.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
         rd.forward(request, response);
     }
 
@@ -149,7 +184,7 @@ public class UserServlet extends HttpServlet {
         request.setAttribute("choose", choose);
         request.setAttribute("brands", brandDAO.display());
         request.setAttribute("productsByPrice", productsByPrice);
-        RequestDispatcher rd = request.getRequestDispatcher("/user.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
         rd.forward(request, response);
     }
 }

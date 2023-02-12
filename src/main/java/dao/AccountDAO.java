@@ -33,7 +33,7 @@ public class AccountDAO {
         return null;
     }
 
-    public void createAccuont(String name, String pass , String phone , String email, String address) throws ClassNotFoundException {
+    public void createAccount(String name, String pass , String phone , String email, String address) throws ClassNotFoundException {
         String query = "insert into account(name,pass,phone , email , address) values (?,?,?,?,?)";
         Class.forName("com.mysql.cj.jdbc.Driver");
         try (Connection conn = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword)) {
@@ -95,9 +95,6 @@ public class AccountDAO {
         for (Account c : list
         ) {
             System.out.println(c);
-
         }
-
-
     }
 }

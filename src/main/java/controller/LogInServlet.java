@@ -44,6 +44,5 @@ public class LogInServlet extends HttpServlet {
             session.setAttribute("account",account);
             response.sendRedirect("home");
         }
-
     }
 }
