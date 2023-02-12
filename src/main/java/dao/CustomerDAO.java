@@ -11,7 +11,6 @@ public class CustomerDAO {
 
     public Customer getAccount(String user, String pass) {
         String query = "select * from customer" + "where userName= ? and passWord = ?";
-//        Class.forName("com.mysql.cj.jdbc.Driver");
         try (Connection conn = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword)) {
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, user);
