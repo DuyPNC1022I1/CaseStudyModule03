@@ -53,15 +53,15 @@ public class AccountServlet extends HttpServlet {
 
         private void updateAccount(HttpServletRequest request, HttpServletResponse response) {
             int id = Integer.parseInt(request.getParameter("id"));
-            String name = request.getParameter("name");
-            String passWord = request.getParameter("password");
+            String name = request.getParameter("username");
+            String pass = request.getParameter("psw");
             String phone = request.getParameter("phone");
             String email = request.getParameter("email");
             String address = request.getParameter("address");
-            Account account = new Account(id, name , passWord, phone, email, address);
+            Account account = new Account(id, name , pass, phone, email, address);
             RequestDispatcher dispatcher;
-            account.setName();
-            account.setPass(passWord);
+            account.setName(name);
+            account.setPass(pass);
             account.setPhone(phone);
             account.setEmail(email);
             account.setAddress(address);
@@ -77,16 +77,14 @@ public class AccountServlet extends HttpServlet {
         }
         private void createAccount(HttpServletRequest request, HttpServletResponse response) throws RuntimeException {
             int id = Integer.parseInt(request.getParameter("id"));
-            String name = request.getParameter("email");
+            String name = request.getParameter("name");
             String passWord = request.getParameter("password");
             String phone = request.getParameter("phone");
             String email = request.getParameter("email");
             String address = request.getParameter("address");
             Account account = new Account(id, name, passWord, phone, email, address);
             this.accountService.addAccount(account);
-            request.setAttribute("accounts", account);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/Sigup.jsp");
-            request.setAttribute("message", "New customer was created");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/sigup.jsp");
             try {
                 dispatcher.forward(request, response);
             } catch (ServletException | IOException e) {
@@ -100,7 +98,7 @@ public class AccountServlet extends HttpServlet {
             dispatcher.forward(request, response);
         }
         private void showCreateAccount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/Sigup.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/sigup.jsp");
             dispatcher.forward(request, response);
         }
     private void showUpdateAccount(HttpServletRequest request, HttpServletResponse response) {

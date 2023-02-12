@@ -3,7 +3,7 @@
 <html>
 <head>
   <title>Title</title>
-  <link rel="stylesheet" href="SigupForm.css">
+  <link rel="stylesheet" href="sigupForm.css">
 </head>
 <body>
 <div>

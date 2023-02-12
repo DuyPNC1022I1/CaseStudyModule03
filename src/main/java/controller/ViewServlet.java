@@ -95,6 +95,6 @@ public class ViewServlet extends HttpServlet {
         response.sendRedirect("home");
     }
     private void showCreate(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.sendRedirect("login/login-form/Sigup.jsp");
+        response.sendRedirect("login/login-form/sigup.jsp");
     }
 }

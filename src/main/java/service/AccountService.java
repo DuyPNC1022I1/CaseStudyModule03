@@ -7,15 +7,12 @@ import java.util.List;
 
 public class AccountService {
         List<Account> accounts = new ArrayList<>();
-
         public List<Account> findAll() {
             return new ArrayList<>();
         }
-
         public void addAccount(Account account) {
             accounts.add(account);
         }
-
         public Account findById(int id) {
             for (int i = 0; i < accounts.size(); i++) {
                 if (accounts.get(i).getId() == id) {

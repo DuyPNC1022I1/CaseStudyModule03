@@ -32,7 +32,7 @@
 <%--							<input type="submit" value="create" name="sigup" >--%>
 						</form>
 						<a href="/AccountServlet" id="login"> LOG IN </a>
-						<a href="Sigup.jsp" id="create"> CREATE </a>
+						<a href="sigup.jsp" id="create"> CREATE </a>
 						<div class="header-left-top">
 						</div>
 					</div>

@@ -32,8 +32,8 @@ public class Account {
         return name;
     }
 
-    public void setName() {
-        this.name = name;
+    public void setName(String name) {
+        this.name = this.name;
     }
 
     public String getPass() {
