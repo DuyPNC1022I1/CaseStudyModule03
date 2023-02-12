@@ -37,9 +37,6 @@ public class AdminServlet extends HttpServlet {
             case "showUpdate":
                 showUpdate(request, response);
                 break;
-            case "delete":
-                delete(request, response);
-                break;
             default:
                 display(request, response);
                 break;
@@ -58,6 +55,9 @@ public class AdminServlet extends HttpServlet {
                 break;
             case "update":
                 update(request, response);
+                break;
+            case "delete":
+                delete(request, response);
                 break;
             case "searchByBrand":
                 searchByBrand(request, response);
