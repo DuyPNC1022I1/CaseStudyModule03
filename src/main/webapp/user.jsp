@@ -62,7 +62,7 @@
                         <div class="col l-4 header-top__right-item">
                             <div class="header__container">
                                 <a class="header-top__right-login">User</a>
-                                <a href="/view?action=logOut" class="header-top__right-register">Log out</a>
+                                <a href="/view" class="header-top__right-register">Log out</a>
                             </div>
                         </div>
                     </div>
@@ -96,7 +96,7 @@
                                 <a href="#" class="header__navbar-link">Chính sách bảo hành</a>
                             </div>
                             <div class="col l-3 header__navbar-item">
-                                <a href="#" class="header__navbar-link">Tin tức sự kiện</a>
+                                <a href="https://www.dangquangwatch.vn/tin-tuc-dong-ho.html" class="header__navbar-link">Tin tức sự kiện</a>
                             </div>
                         </div>
                     </div>

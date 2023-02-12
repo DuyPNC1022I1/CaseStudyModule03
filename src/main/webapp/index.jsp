@@ -89,7 +89,7 @@
                                 <a href="#" class="header__navbar-link">Chính sách bảo hành</a>
                             </div>
                             <div class="col l-3 header__navbar-item">
-                                <a href="#" class="header__navbar-link">Tin tức sự kiện</a>
+                                <a href="https://www.dangquangwatch.vn/tin-tuc-dong-ho.html" class="header__navbar-link">Tin tức sự kiện</a>
                             </div>
                         </div>
                     </div>

@@ -26,9 +26,9 @@
     <div id="header">
         <div class="grid wide">
             <div class="row">
-                <div class="col l-2 header-logo">
+                <a href="/admin" class="col l-2 header-logo">
                     <img class="header-logo__img" src="./assets/img/logo/logo1.png" alt="">
-                </div>
+                </a>
                 <div class="col l-5 header-search">
                     <form class="header-search__form" action="/user?action=searchName" method="post">
                         <input class="input-search" type="search" placeholder="Nhập từ khoá tìm kiếm...">
@@ -60,7 +60,7 @@
                         <div class="col l-4 header-top__right-item">
                             <div class="header__container">
                                 <a href="" class="header-top__right-login">Admin</a>
-                                <a href="/view?action=logOut" class="header-top__right-register">Log out</a>
+                                <a href="/view" class="header-top__right-register">Log out</a>
                             </div>
                         </div>
                     </div>
