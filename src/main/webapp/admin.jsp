@@ -252,7 +252,7 @@
                                                 <input type="submit" onclick="a()" value="Xóa">
                                                 <script type="text/javascript">
                                                     function a() {
-                                                        if (confirm("Bấm vào đây để xóa sản phẩm đã chọn!!!")) {
+                                                        if (confirm("Xác nhận xóa sản phẩm đã chọn!!!")) {
                                                             this.form.submit();
                                                         }
                                                     }
