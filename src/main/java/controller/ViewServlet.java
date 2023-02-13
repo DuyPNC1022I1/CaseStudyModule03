@@ -37,6 +37,7 @@ public class ViewServlet extends HttpServlet {
                 break;
             case "logOut":
                 logOut(request, response);
+                break;
             case "showCreate":
                 showCreate(request, response);
                 break;

@@ -175,14 +175,14 @@ public class UserServlet extends HttpServlet {
             ProductDAO pdb = new ProductDAO();
             Product p = pdb.selectById(id);
             double price = p.getPrice() * 1;
-            Item t = new Item(p, num, price);
+            Item t = new Item(p, price);
             cart.addItem(t);
         } catch (NumberFormatException e) {
             num = 1;
         }
-        List<Item> list = cart.getItems();
+//        List<Item> list = cart.getItems();
         session.setAttribute("cart", cart);
-        session.setAttribute("size", list.size());
+//        session.setAttribute("size", list.size());
         request.getRequestDispatcher("cart.jsp").forward(request, response);
     }
 

@@ -34,6 +34,7 @@ public class Cart {
             items.add(t);
         }
     }
+
     public void removeItem(int id) {
         if (getItemById(id) != null) {
             items.remove(getItemById(id));

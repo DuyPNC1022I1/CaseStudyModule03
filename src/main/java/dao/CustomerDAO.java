@@ -7,7 +7,7 @@ import java.sql.*;
 public class CustomerDAO {
     static String  jdbcURL = "jdbc:mysql://localhost:3306/case_module03.account";
     static String jdbcUsername = "root";
-    static String jdbcPassword = "12345678";
+    static String jdbcPassword = "123456";
 
     public Customer getAccount(String user, String pass) {
         String query = "select * from user" + "where username= ? and password = ?";
