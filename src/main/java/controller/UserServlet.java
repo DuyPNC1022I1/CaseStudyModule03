@@ -31,7 +31,7 @@ public class UserServlet extends HttpServlet {
         }
         switch (action) {
             case "buy":
-                buyProduct(request, response);
+//                buyProduct(request, response);
                 break;
             case "showBuy":
                 showBuy(request, response);
@@ -161,37 +161,37 @@ public class UserServlet extends HttpServlet {
         rd.forward(request, response);
     }
 
-    private void buyProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession(true);
-        Cart cart = null;
-        Object o = session.getAttribute("cart");
-//        Có rồi
-        if (o != null) {
-            cart = (Cart) o;
-        } else {
-            cart = new Cart();
-        }
-//        String tNum = request.getParameter("num");
-        String tId = request.getParameter("id");
-        int id;
-        try {
-//            num = Integer.parseInt(tNum);
-            id = Integer.parseInt(tId);
-            ProductDAO pdb = new ProductDAO();
-            Product p = pdb.selectById(id);
-            double price = p.getPrice() * 1;
-            Item t = new Item(p, price);
-            cart.addItem(t);
-        } catch (NumberFormatException e) {
-            e.getStackTrace();
-        }
-        List<Item> list = cart.getItems();
-        session.setAttribute("cart", list);
+//    private void buyProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        HttpSession session = request.getSession(true);
+//        Cart cart = null;
+//        Object o = session.getAttribute("cart");
+////        Có rồi
+//        if (o != null) {
+//            cart = (Cart) o;
+//        } else {
+//            cart = new Cart();
+//        }
+////        String tNum = request.getParameter("num");
+//        String tId = request.getParameter("id");
+//        int id;
+//        try {
+////            num = Integer.parseInt(tNum);
+//            id = Integer.parseInt(tId);
+//            ProductDAO pdb = new ProductDAO();
+//            Product p = pdb.selectById(id);
+//            double price = p.getPrice() * 1;
+//            Item t = new Item(p, price);
+//            cart.addItem(t);
+//        } catch (NumberFormatException e) {
+//            e.getStackTrace();
+//        }
 //        List<Item> list = cart.getItems();
-        session.setAttribute("cart", cart);
-//        session.setAttribute("size", list.size());
-        request.getRequestDispatcher("cart.jsp").forward(request, response);
-    }
+//        session.setAttribute("cart", list);
+////        List<Item> list = cart.getItems();
+//        session.setAttribute("cart", cart);
+////        session.setAttribute("size", list.size());
+//        request.getRequestDispatcher("cart.jsp").forward(request, response);
+//    }
 
     private void showBuy(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("products", this.productDAO.display());
