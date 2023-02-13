@@ -33,6 +33,7 @@ public class UserServlet extends HttpServlet {
         }
         switch (action) {
             case "buy":
+                buyProduct(request, response);
                 break;
             default:
                 showProduct(request, response);
