@@ -1,10 +1,8 @@
 package controller;
-
 import dao.AccountDAO;
 import dao.BrandDAO;
 import dao.ProductDAO;
 import model.Account;
-
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -22,6 +20,7 @@ public class ViewServlet extends HttpServlet {
         this.brandDAO = new BrandDAO();
         this.accountDAO = new AccountDAO();
     }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -30,10 +29,11 @@ public class ViewServlet extends HttpServlet {
         }
         switch (action) {
             case "showLogin":
-                showLogin(request,response);
+                showLogin(request, response);
                 break;
             case "logOut":
                 logOut(request, response);
+                break;
             case "showCreate":
                 showCreate(request, response);
                 break;
@@ -51,14 +51,13 @@ public class ViewServlet extends HttpServlet {
         }
         switch (action) {
             case "login":
-                try {
-                    login(request, response);
-                } catch (ClassNotFoundException e) {
-                    throw new RuntimeException(e);
-                }
+                loginUser(request, response);
                 break;
-            case "create" :
-                create(request , response);
+            case "create":
+                create(request, response);
+                break;
+            case "showLogin":
+                showLogin(request, response);
                 break;
             default:
                 display(request, response);
@@ -73,28 +72,33 @@ public class ViewServlet extends HttpServlet {
         rd.forward(request, response);
     }
 
-    private void showLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.sendRedirect("login/login-form/login.jsp");
+    private void showLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        response.sendRedirect("login/login-form/login.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/login/login-form/login.jsp");
+        rd.forward(request, response);
     }
-    public void login(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, ServletException, IOException {
+
+    public void loginUser(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String name = request.getParameter("username");
         String password = request.getParameter("password");
-        AccountDAO accountDAO = new AccountDAO();
         Account account = accountDAO.checkLogin(name, password);
-        if (account == null){
-            request.setAttribute("messLogin","Wrong username or Password, enter again");
-            RequestDispatcher rq = request.getRequestDispatcher("/login/login-form/login.jsp");
-            rq.forward(request, response);
-        }else {
+        if (account == null) {
+            request.setAttribute("messLogin", "Wrong username or Password, enter again");
+            request.getRequestDispatcher("/view?action=showLogin").forward(request,response);
+
+        }
+        else {
+            System.out.println(account);
             HttpSession session = request.getSession();
-            session.setAttribute("admin",account);
+            session.setAttribute("admin", account);
             if (account.getRole() == 1) {
                 response.sendRedirect("/admin");
-            } else if (account.getRole() == 0){
+            } else if (account.getRole() == 0) {
                 response.sendRedirect("/user");
             }
         }
     }
+
     public void logOut(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
         session.removeAttribute("account");
@@ -103,6 +107,7 @@ public class ViewServlet extends HttpServlet {
     private void showCreate(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.sendRedirect("login/login-form/sigup.jsp");
     }
+
     private void create(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String name = request.getParameter("name");
         String pass = request.getParameter("pass");

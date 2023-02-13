@@ -8,10 +8,10 @@
     function validatePassword() {
       var pass= document.getElementById("password").value;
       var repeat = document.getElementById("pswrepeat").value;
-      if (password != pswrepeat) {
+      if (pass != repeat) {
         alert("psw-repeatPasswords do not match.");
         return false;
-      }pass
+      }
       return true;
     }
   </script>
@@ -20,17 +20,17 @@
 <div>
   <form action="" >
     <div class="container">
-      <%--@declare id="email"--%><%--@declare id="psw"--%><%--@declare id="psw-repeat"--%><%--@declare id="username"--%><%--@declare id="phone-number"--%><%--@declare id="address"--%><h1>Form Đăng Ký</h1>
+      <%--@declare id="email"--%><%--@declare id="psw"--%><%--@declare id="psw-repeat"--%><%--@declare id="username"--%><%--@declare id="phone-number"--%><%--@declare id="address"--%><%--@declare id="pswrepeat"--%><h1>Form Đăng Ký</h1>
       <p style="color: white">Xin hãy nhập biểu mẫu bên dưới để đăng ký.</p>
       <hr>
       <label for="username"><b>User name</b></label>
       <input type="text" placeholder="Nhập tên đăng nhập" name="name"  required>
 
       <label for="psw"><b>Mật Khẩu</b></label>
-      <input type="password" placeholder="Nhập Mật Khẩu" name="psw" required>
+      <input type="password" placeholder="Nhập Mật Khẩu" name="psw" id="password" required>
 
       <label for="pswrepeat"><b>Nhập Lại Mật Khẩu</b></label>
-      <input type="password" placeholder="Nhập Lại Mật Khẩu" name="pswrepeat" required>
+      <input type="password" placeholder="Nhập Lại Mật Khẩu" name="pswrepeat" id="pswrepeat" required>
 
       <label for="email"><b>Email</b></label>
       <input type="text" placeholder="Nhập Email" name="email" required>

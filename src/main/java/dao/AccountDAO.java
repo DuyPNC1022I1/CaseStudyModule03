@@ -1,4 +1,5 @@
 package dao;
+
 import model.Account;
 
 import java.sql.*;
@@ -11,8 +12,8 @@ public class AccountDAO {
     public AccountDAO() {
         conn = MyConnection.getConnection();
     }
-    public Account checkLogin(String name, String password) throws ClassNotFoundException {
-        Class.forName("com.mysql.cj.jdbc.Driver");
+
+    public Account checkLogin(String name, String password) {
         try {
             PreparedStatement ps = conn.prepareStatement(ACCOUNT_LOGIN);
             ps.setString(1, name);
@@ -24,10 +25,11 @@ public class AccountDAO {
                         rs.getString(5), rs.getString(6), rs.getInt(7));
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            return null;
         }
         return null;
     }
+
     public void create(Account account) {
         try (PreparedStatement pr = conn.prepareStatement(CREATE_ACCOUNT)) {
             pr.setString(1, account.getName());
