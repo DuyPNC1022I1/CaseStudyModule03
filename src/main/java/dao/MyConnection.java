@@ -12,7 +12,7 @@ public class MyConnection {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             //đường dẫn đến DB muốn thao tác, tài khoản và mật khẩu
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/case_module03?useSSL=false",
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/case_module03",
                     "root", "123456");
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();

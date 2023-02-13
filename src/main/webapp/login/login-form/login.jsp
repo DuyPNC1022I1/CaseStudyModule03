@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -26,15 +25,15 @@
 				<div class="header-right w3agile">
 					<div class="header-left-bottom agileinfo">
 						<form action="/view?action=login" method="post">
-							<input type="text"  placeholder="username" name="username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Username';}"/>
-							<input type="password"  placeholder="Password" name="password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}"/>
+							<input type="text"  placeholder="username" name="username"/>
+							<input type="password"  placeholder="Password" name="password"/>
 							<div class="remember">
 			             <span class="checkbox1">
 							   <label class="checkbox"><input type="checkbox" name="" checked=""><i> </i>Remember me</label>
 						 </span>
 								<div class="clear"> </div>
 							</div>
-<%--						</form>--%>
+
 						<button id="login" type="submit"> LOGIN </button>
 						</form>
 						<a href="sigup.jsp" id="create"> CREATE </a>
