@@ -18,7 +18,7 @@
 </head>
 <body>
 <div>
-  <form action="/view?action=create" method="post" >
+  <form action="/view?action=create"  method="post" >
     <div class="container">
       <%--@declare id="email"--%><%--@declare id="psw"--%><%--@declare id="psw-repeat"--%><%--@declare id="username"--%><%--@declare id="phone-number"--%><%--@declare id="address"--%><%--@declare id="pswrepeat"--%><h1>Form Đăng Ký</h1>
       <p style="color: white">Xin hãy nhập biểu mẫu bên dưới để đăng ký.</p>
