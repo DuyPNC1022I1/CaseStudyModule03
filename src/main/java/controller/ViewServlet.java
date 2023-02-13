@@ -15,6 +15,7 @@ import java.util.List;
 
 @WebServlet(name = "ViewServlet", value = "/view")
 public class ViewServlet extends HttpServlet {
+    AccountDAO accountDAO;
     private ProductDAO productDAO;
     private BrandDAO brandDAO;
 
@@ -22,6 +23,7 @@ public class ViewServlet extends HttpServlet {
     public void init() {
         this.productDAO = new ProductDAO();
         this.brandDAO = new BrandDAO();
+        this.accountDAO = new AccountDAO();
     }
 
     @Override
@@ -58,6 +60,8 @@ public class ViewServlet extends HttpServlet {
                 } catch (ClassNotFoundException e) {
                     throw new RuntimeException(e);
                 }
+            case "create" :
+                create(request , response);
                 break;
             case "searchByBrand":
                 searchByBrand(request, response);
@@ -84,7 +88,6 @@ public class ViewServlet extends HttpServlet {
     private void showLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.sendRedirect("login/login-form/login.jsp");
     }
-
     public void login(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, ServletException, IOException {
         String name = request.getParameter("name");
         String password = request.getParameter("password");
@@ -92,14 +95,19 @@ public class ViewServlet extends HttpServlet {
         Account account = accountDAO.checkLogin(name, password);
         if (account == null){
             request.setAttribute("messLogin","Wrong username or Password, enter again");
-            RequestDispatcher rq = request.getRequestDispatcher("login/login-form/login.jsp");
+            RequestDispatcher rq = request.getRequestDispatcher("login.jsp");
             rq.forward(request, response);
         }else {
             HttpSession session = request.getSession();
-            session.setAttribute("account",account);
-            response.sendRedirect("home");
+            session.setAttribute("admin",account);
+            if (account.getRole() == 1) {
+                response.sendRedirect("/admin");
+            } else if (account.getRole() == 0){
+                response.sendRedirect("/user");
+            }
         }
     }
+
 
     public void logOut(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
@@ -107,7 +115,16 @@ public class ViewServlet extends HttpServlet {
         response.sendRedirect("home");
     }
     private void showCreate(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.sendRedirect("login/login-form/Sigup.jsp");
+        response.sendRedirect("login/login-form/sigup.jsp");
+    }
+    private void create(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String name = request.getParameter("name");
+        String pass = request.getParameter("pass");
+        String phone = request.getParameter("phone");
+        String email = request.getParameter("email");
+        String address = request.getParameter("address");
+        accountDAO.create(new Account(name, pass, phone, email, address));
+        response.sendRedirect("/login");
     }
 
     private void searchByName(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
