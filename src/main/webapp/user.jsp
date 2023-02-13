@@ -242,6 +242,10 @@
                                             </c:when>
                                         </c:choose>
                                     </div>
+
+                                    <div class="product-container-btn">
+                                        <a class="btn-link" href="/user?action=buy&id=${p.getId()}">Mua hàng</a>
+                                    </div>
                                 </div>
                             </div>
                         </c:forEach>
@@ -285,6 +289,10 @@
                                                             </c:when>
                                                         </c:choose>
                                                     </div>
+
+                                                    <div class="product-container-btn">
+                                                        <a class="btn-link" href="/user?action=buy&id=${p.getId()}">Mua hàng</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </c:forEach>
@@ -322,6 +330,10 @@
                                                         </div>
                                                     </c:when>
                                                 </c:choose>
+                                            </div>
+
+                                            <div class="product-container-btn">
+                                                <a class="btn-link" href="/user?action=buy&id=${p.getId()}">Mua hàng</a>
                                             </div>
                                         </div>
                                     </div>
@@ -366,6 +378,10 @@
                                                                 </div>
                                                             </c:when>
                                                         </c:choose>
+                                                    </div>
+
+                                                    <div class="product-container-btn">
+                                                        <a class="btn-link" href="/user?action=buy&id=${p.getId()}">Mua hàng</a>
                                                     </div>
                                                 </div>
                                             </div>
