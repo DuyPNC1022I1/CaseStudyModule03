@@ -26,13 +26,13 @@ public class Cart {
 //    Thêm vào cart
     public void addItem(Item t) {
 //        Có ở cart rồi
-        if (getItemById(t.getProduct().getId()) != null){
-            Item i = getItemById(t.getProduct().getId());
-            i.setQuantity(i.getQuantity()+t.getQuantity());
-        } else {
-//            Chưa có
+//        if (getItemById(t.getProduct().getId()) != null){
+//            Item i = getItemById(t.getProduct().getId());
+//            i.setQuantity(i.getQuantity()+t.getQuantity());
+//        } else {
+////            Chưa có
             items.add(t);
-        }
+//        }
     }
     public void removeItem(int id) {
         if (getItemById(id) != null) {

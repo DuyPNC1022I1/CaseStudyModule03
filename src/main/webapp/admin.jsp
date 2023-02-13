@@ -221,7 +221,7 @@
                                 <div class="product-container">
                                     <div class="product-container__img">
                                         <img class="product-img"
-                                             src="./assets/img/category/atlantic/1462484998_dong-ho-thuy-sy-phien-ban-gioi-han9.jpg"
+                                             src="${p.getImage()}"
                                              alt="">
                                     </div>
                                     <div class="product-content">
@@ -284,7 +284,7 @@
                                                 <div class="product-container">
                                                     <div class="product-container__img">
                                                         <img class="product-img"
-                                                             src="./assets/img/category/atlantic/1462484998_dong-ho-thuy-sy-phien-ban-gioi-han9.jpg"
+                                                             src="${p.getImage()}"
                                                              alt="">
                                                     </div>
                                                     <div class="product-content">
@@ -326,7 +326,7 @@
                                         <div class="product-container">
                                             <div class="product-container__img">
                                                 <img class="product-img"
-                                                     src="./assets/img/category/atlantic/1462484998_dong-ho-thuy-sy-phien-ban-gioi-han9.jpg"
+                                                     src="${p.getImage()}"
                                                      alt="">
                                             </div>
                                             <div class="product-content">
@@ -375,7 +375,7 @@
                                                 <div class="product-container">
                                                     <div class="product-container__img">
                                                         <img class="product-img"
-                                                             src="./assets/img/category/atlantic/1462484998_dong-ho-thuy-sy-phien-ban-gioi-han9.jpg"
+                                                             src="${p.getImage()}"
                                                              alt="">
                                                     </div>
                                                     <div class="product-content">
