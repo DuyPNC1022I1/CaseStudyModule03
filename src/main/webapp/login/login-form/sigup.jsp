@@ -3,7 +3,18 @@
 <html>
 <head>
   <title>Title</title>
-  <link rel="stylesheet" href="SigupForm.css">
+  <link rel="stylesheet" href="sigupForm.css">
+  <script>
+    function validatePassword() {
+      var pass= document.getElementById("password").value;
+      var repeat = document.getElementById("pswrepeat").value;
+      if (password != pswrepeat) {
+        alert("psw-repeatPasswords do not match.");
+        return false;
+      }pass
+      return true;
+    }
+  </script>
 </head>
 <body>
 <div>
@@ -18,8 +29,8 @@
       <label for="psw"><b>Mật Khẩu</b></label>
       <input type="password" placeholder="Nhập Mật Khẩu" name="psw" required>
 
-      <label for="psw-repeat"><b>Nhập Lại Mật Khẩu</b></label>
-      <input type="password" placeholder="Nhập Lại Mật Khẩu" name="psw-repeat" required>
+      <label for="pswrepeat"><b>Nhập Lại Mật Khẩu</b></label>
+      <input type="password" placeholder="Nhập Lại Mật Khẩu" name="pswrepeat" required>
 
       <label for="email"><b>Email</b></label>
       <input type="text" placeholder="Nhập Email" name="email" required>

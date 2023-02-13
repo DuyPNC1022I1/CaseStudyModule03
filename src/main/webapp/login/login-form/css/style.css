@@ -140,7 +140,7 @@ span.login-color {
   display: inline-block;
 }
 .header-left-bottom input[type="submit"] {
-
+    margin-bottom : 50px;
     margin-top: 10px;
     background: #ff3366;
     color: #FFF;
@@ -379,7 +379,6 @@ span.sin-color {
   display: inline-block;
 }
 .strip-left ul.botm-strip-icon li a {
-  background: url(../images/sprite.png)no-repeat;
   width: 20px;
   height: 25px;
   display: block;
