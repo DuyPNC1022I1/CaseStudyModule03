@@ -152,6 +152,4 @@ public class UserServlet extends HttpServlet {
         RequestDispatcher rd = request.getRequestDispatcher("/user.jsp");
         rd.forward(request, response);
     }
-
-    private void buyProduct
 }
