@@ -45,10 +45,10 @@
                             <div class="header-top__right-icon">
                                 <i class="fa-solid fa-cart-shopping"></i>
                             </div>
-                            <div class="header__text">
+                            <a href="/user?action=showBuy" class="header__text">
                                 <p class="header-top__right-text-top">Giỏ hàng</p>
                                 <p class="header-top__right-text-bot">[0] sản phẩm</p>
-                            </div>
+                            </a>
                         </div>
                         <div class="col l-4 header-top__right-item">
                             <div class="header-top__right-icon">
@@ -223,6 +223,10 @@
                                     <div class="product-content">
                                         <h3 class="product-content__name">${p.getName()}</h3>
                                         <p class="product-content__desc">${p.getDescription()}</p>
+                                        <div class="product-content__container-brand">
+                                            Thương hiệu:
+                                            <p class="product-content__brand">${p.getBrand().getName()}</p>
+                                        </div>
                                         <div class="product-content__container-price">
                                             Giá:
                                             <p class="product-content__price">${p.getPrice()} VND</p>
@@ -270,6 +274,10 @@
                                                     <div class="product-content">
                                                         <h3 class="product-content__name">${p.getName()}</h3>
                                                         <p class="product-content__desc">${p.getDescription()}</p>
+                                                        <div class="product-content__container-brand">
+                                                            Thương hiệu:
+                                                            <p class="product-content__brand">${p.getBrand().getName()}</p>
+                                                        </div>
                                                         <div class="product-content__container-price">
                                                             Giá:
                                                             <p class="product-content__price">${p.getPrice()} VND</p>
@@ -312,6 +320,10 @@
                                             <div class="product-content">
                                                 <h3 class="product-content__name">${p.getName()}</h3>
                                                 <p class="product-content__desc">${p.getDescription()}</p>
+                                                <div class="product-content__container-brand">
+                                                    Thương hiệu:
+                                                    <p class="product-content__brand">${p.getBrand().getName()}</p>
+                                                </div>
                                                 <div class="product-content__container-price">
                                                     Giá:
                                                     <p class="product-content__price">${p.getPrice()} VND</p>
@@ -360,6 +372,10 @@
                                                     <div class="product-content">
                                                         <h3 class="product-content__name">${p.getName()}</h3>
                                                         <p class="product-content__desc">${p.getDescription()}</p>
+                                                        <div class="product-content__container-brand">
+                                                            Thương hiệu:
+                                                            <p class="product-content__brand">${p.getBrand().getName()}</p>
+                                                        </div>
                                                         <div class="product-content__container-price">
                                                             Giá:
                                                             <p class="product-content__price">${p.getPrice()} VND</p>
