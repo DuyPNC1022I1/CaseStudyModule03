@@ -20,7 +20,7 @@ public class Cart {
         }
         return null;
     }
-    private int getQuantityById (int id) {
+    public int getQuantityById (int id) {
         return getItemById(id).getQuantity();
     }
 //    Thêm vào cart
