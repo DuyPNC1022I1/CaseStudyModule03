@@ -36,7 +36,7 @@ public class UserServlet extends HttpServlet {
                 buyProduct(request, response);
                 break;
             case "showBuy":
-                showBuy(request, response);
+//                showBuy(request, response);
             default:
                 showProduct(request, response);
                 break;
