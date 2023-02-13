@@ -14,22 +14,23 @@
 <!--header start-->
 <div class="header">
 	<div class="header-main">
-		<div id="form-main" action="/view" >
+		<div id="form-main"	>
 			<h1> Login Form</h1>
 			<div class="header-bottom">
 				<div class="header-right w3agile">
 					<div class="header-left-bottom agileinfo">
-						<form action="/view" method="post">
-							<input type="text"  value="Username" name="username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Username';}"/>
-							<input type="password"  value="Password" name="password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'password';}"/>
+						<form action="/view?action=login" method="post">
+							<input type="text"  placeholder="username" name="username"/>
+							<input type="password"  placeholder="Password" name="password"/>
 							<div class="remember">
 			             <span class="checkbox1">
 							   <label class="checkbox"><input type="checkbox" name="" checked=""><i> </i>Remember me</label>
 						 </span>
 								<div class="clear"> </div>
 							</div>
+<%--						</form>--%>
+						<button id="login" type="submit"> LOGIN </button>
 						</form>
-						<a href="view" id="login"> LOGIN </a>
 						<a href="sigup.jsp" id="create"> CREATE </a>
 						<br>
 						<div class="header-left-top">

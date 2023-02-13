@@ -22,7 +22,6 @@ public class ViewServlet extends HttpServlet {
         this.brandDAO = new BrandDAO();
         this.accountDAO = new AccountDAO();
     }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -57,6 +56,7 @@ public class ViewServlet extends HttpServlet {
                 } catch (ClassNotFoundException e) {
                     throw new RuntimeException(e);
                 }
+                break;
             case "create" :
                 create(request , response);
                 break;
@@ -77,13 +77,13 @@ public class ViewServlet extends HttpServlet {
         response.sendRedirect("login/login-form/login.jsp");
     }
     public void login(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, ServletException, IOException {
-        String name = request.getParameter("name");
+        String name = request.getParameter("username");
         String password = request.getParameter("password");
         AccountDAO accountDAO = new AccountDAO();
         Account account = accountDAO.checkLogin(name, password);
         if (account == null){
             request.setAttribute("messLogin","Wrong username or Password, enter again");
-            RequestDispatcher rq = request.getRequestDispatcher("login.jsp");
+            RequestDispatcher rq = request.getRequestDispatcher("/login/login-form/login.jsp");
             rq.forward(request, response);
         }else {
             HttpSession session = request.getSession();
@@ -95,12 +95,10 @@ public class ViewServlet extends HttpServlet {
             }
         }
     }
-
-
     public void logOut(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
         session.removeAttribute("account");
-        response.sendRedirect("home");
+        response.sendRedirect("index.jsp");
     }
     private void showCreate(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.sendRedirect("login/login-form/sigup.jsp");

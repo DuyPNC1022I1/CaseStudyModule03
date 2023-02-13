@@ -23,13 +23,11 @@ public class AccountDAO {
                         rs.getString(3), rs.getString(4),
                         rs.getString(5), rs.getString(6), rs.getInt(7));
             }
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return null;
     }
-
     public void create(Account account) {
         try (PreparedStatement pr = conn.prepareStatement(CREATE_ACCOUNT)) {
             pr.setString(1, account.getName());
