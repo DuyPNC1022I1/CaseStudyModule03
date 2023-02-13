@@ -25,7 +25,7 @@
   <div class="grid wide">
     <div class="container">
       <div class="container__product">
-        <c:forEach items="products" var="product">
+        <c:forEach items="${products}" var="product">
           <div class="row">
             <div class="col l-2">
               <img src="./assets/img/category/atlantic/1462484998_dong-ho-thuy-sy-phien-ban-gioi-han9.jpg" alt="">

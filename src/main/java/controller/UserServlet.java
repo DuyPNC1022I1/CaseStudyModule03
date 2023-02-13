@@ -1,11 +1,9 @@
 package controller;
 
 import dao.BrandDAO;
+import dao.OrderDAO;
 import dao.ProductDAO;
-import model.Brand;
-import model.Cart;
-import model.Item;
-import model.Product;
+import model.*;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -186,5 +184,34 @@ public class UserServlet extends HttpServlet {
         session.setAttribute("cart", cart);
         session.setAttribute("size", list.size());
         request.getRequestDispatcher("cart.jsp").forward(request, response);
+    }
+
+    private void showBuy(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("products", this.productDAO.display());
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("cart.jsp");
+        requestDispatcher.forward(request, response);
+    }
+
+    private void checkOut(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession(true);
+        Cart cart = null;
+        Object o = session.getAttribute("cart");
+        if (o != null){
+            cart = (Cart) o;
+        }else {
+            cart = new Cart();
+        }
+        Customer account = null;
+        Object a = session.getAttribute("account");
+        if (a != null){
+            account = (Customer) a;
+            OrderDAO odb = new OrderDAO();
+            odb.addOrder(account, cart);
+            session.removeAttribute("cart");
+            session.setAttribute("size", 0);
+            response.sendRedirect("cart.jsp");
+        } else {
+            response.sendRedirect("login.jsp");
+        }
     }
 }
