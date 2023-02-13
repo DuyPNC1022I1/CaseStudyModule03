@@ -25,25 +25,24 @@
   <div class="grid wide">
     <div class="container">
       <div class="container__product">
-        <c:forEach items="${products}" var="product">
+        <c:forEach items="${cart}" var="cart">
           <div class="row">
             <div class="col l-2">
               <img src="./assets/img/category/atlantic/1462484998_dong-ho-thuy-sy-phien-ban-gioi-han9.jpg" alt="">
             </div>
             <div class="col l-8 container-infomation">
               <div class="product-infomation">
-                <div class="product-name">${product.getName()}</div>
-                <div class="product-desc">${product.getDescription()}</div>
+                <div class="product-name">${cart.getProduct().getName()}</div>
+                <div class="product-desc">${cart.getProduct().getDescription()}</div>
                 <div class="product-brand">
                   Thương hiệu:
-                  <div class="product-brand__name">${product.getBrand().getName()}</div>
+                  <div class="product-brand__name">${cart.getProduct().getBrand().getName()}</div>
                 </div>
-                <input type="number" value="3">
               </div>
             </div>
             <div class="col l-2 container-product__price">
               <div class="conntainer-price">
-                <div class="product-price">Giá: ${product.getPrice()}</div>
+                <div class="product-price">Giá: ${cart.getProduct().getPrice()}</div>
                 <a class="product-delete__cart" href="#">Xoá</a>
               </div>
             </div>
@@ -75,10 +74,11 @@
       <div class="container__footer">
         <div class="row container__price-cart">
           <p class="col l-3">Tổng tiền thanh toán</p>
-          <p class="col l-9 price-cart">23.590.380 VND</p>
+          <p class="col l-9 price-cart"></p>
         </div>
         <div class="row container__footer-btn">
           <button class="btn">Đặt Hàng</button>
+<%--          <a href="/user" class="btn">Quay về trang chủ</a>--%>
         </div>
       </div>
     </div>

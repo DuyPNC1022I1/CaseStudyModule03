@@ -29,23 +29,23 @@ public class BuyServlet extends HttpServlet {
         }else {
             cart = new Cart();
         }
-        String tNum = request.getParameter("num");
+//        String tNum = request.getParameter("num");
         String tId = request.getParameter("id");
-        int num, id;
+        int id;
         try {
-            num = Integer.parseInt(tNum);
+//            num = Integer.parseInt(tNum);
             id = Integer.parseInt(tId);
             ProductDAO pdb = new ProductDAO();
             Product p = pdb.selectById(id);
             double price = p.getPrice()*1;
-            Item t = new Item(p, num, price);
+            Item t = new Item(p, price);
             cart.addItem(t);
         } catch (NumberFormatException e){
-            num = 1;
+            e.getStackTrace();
         }
         List<Item> list = cart.getItems();
-        session.setAttribute("cart", cart);
-        session.setAttribute("size", list.size());
-        request.getRequestDispatcher("cart.jsp").forward(request, response);
+        session.setAttribute("cart", list);
+//        session.setAttribute("size", list.size());
+//        request.getRequestDispatcher("cart.jsp").forward(request, response);
     }
 }
