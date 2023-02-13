@@ -577,3 +577,14 @@
 .btn-link:hover {
     background-color: rgba(255, 229, 0, 0.8);
 }
+
+.product-content__container-brand {
+    display: flex;
+    color: #666;
+}
+
+.product-content__brand {
+    margin-left: 10px;
+    font-size: 1.6rem;
+    color: var(--text-color);
+}

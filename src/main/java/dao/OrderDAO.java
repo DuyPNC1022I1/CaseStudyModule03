@@ -10,7 +10,7 @@ import java.time.LocalDate;
 public class OrderDAO {
     static String jdbcURL = "jdbc:mysql://localhost:3306/case_module03.account";
     static String jdbcUsername = "root";
-    static String jdbcPassword = "12345678";
+    static String jdbcPassword = "123456";
 
     public void addOrder(Customer c, Cart cart) {
         LocalDate curDate = LocalDate.now();
