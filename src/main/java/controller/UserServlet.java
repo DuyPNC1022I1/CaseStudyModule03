@@ -34,15 +34,12 @@ public class UserServlet extends HttpServlet {
                 buyProduct(request, response);
                 break;
             case "showBuy":
-<<<<<<< HEAD
                 showBuy(request, response);
                 break;
             case "checkOut":
                 checkOut(request, response);
                 break;
-=======
 //                showBuy(request, response);
->>>>>>> duy
             default:
                 showProduct(request, response);
                 break;
@@ -188,13 +185,10 @@ public class UserServlet extends HttpServlet {
         } catch (NumberFormatException e) {
             e.getStackTrace();
         }
-<<<<<<< HEAD
         List<Item> list = cart.getItems();
         session.setAttribute("cart", list);
-=======
 //        List<Item> list = cart.getItems();
         session.setAttribute("cart", cart);
->>>>>>> duy
 //        session.setAttribute("size", list.size());
         request.getRequestDispatcher("cart.jsp").forward(request, response);
     }
