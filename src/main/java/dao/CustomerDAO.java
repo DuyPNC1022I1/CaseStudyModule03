@@ -10,7 +10,7 @@ public class CustomerDAO {
     static String jdbcPassword = "12345678";
 
     public Customer getAccount(String user, String pass) {
-        String query = "select * from customer" + "where userName= ? and passWord = ?";
+        String query = "select * from user" + "where username= ? and password = ?";
         try (Connection conn = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword)) {
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, user);

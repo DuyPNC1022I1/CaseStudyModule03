@@ -17,21 +17,21 @@ public class OrderDAO {
         String date = curDate.toString();
         try (Connection conn = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword)) {
             //add order
-            String sql = "insert into order values(?,?,?)";
+            String sql = "insert into cart values(?,?,?)";
             PreparedStatement st = conn.prepareStatement(sql);
             st.setString(1, date);
             st.setInt(2, c.getId());
             st.setDouble(3, cart.getTotalMoney());
             st.executeUpdate();
             //lay id cua order vua add
-            String sql1 = "select top 1 id from order order by id desc";
+            String sql1 = "select top 1 id from cart order by id desc";
             PreparedStatement st1 = conn.prepareStatement(sql1);
             ResultSet rs = st1.executeQuery();
             //add bang OrderDetail
             if (rs.next()) {
                 int oid = rs.getInt("id");
                 for (Item i : cart.getItems()) {
-                    String sql2 = "insert into orderline values(?,?,?,?)";
+                    String sql2 = "insert into bill values(?,?,?,?)";
                     PreparedStatement st2 = conn.prepareStatement(sql2);
                     st2.setInt(1, oid);
                     st2.setInt(2, i.getProduct().getId());
