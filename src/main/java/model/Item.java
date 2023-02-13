@@ -14,6 +14,11 @@ public class Item {
         this.price = price;
     }
 
+    public Item(Product product, double price) {
+        this.product = product;
+        this.price = price;
+    }
+
     public Product getProduct() {
         return product;
     }
