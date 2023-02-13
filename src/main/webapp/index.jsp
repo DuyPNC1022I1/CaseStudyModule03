@@ -235,6 +235,10 @@
                                             </c:when>
                                         </c:choose>
                                     </div>
+
+                                    <div class="product-container-btn">
+                                        <a class="btn-link" href="/user?action=buy&id=${p.getId()}">Mua hàng</a>
+                                    </div>
                                 </div>
                             </div>
                         </c:forEach>
@@ -277,12 +281,17 @@
                                                             </c:when>
                                                         </c:choose>
                                                     </div>
+
+                                                    <div class="product-container-btn">
+                                                        <a class="btn-link" href="/user?action=buy&id=${p.getId()}">Mua hàng</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </c:forEach>
                                     </c:when>
                                 </c:choose>
                             </c:when>
+
                             <%--Phần hiển thị search by brand--%>
                             <c:when test="${requestScope['choose'] == 2}">
                                 <c:forEach items="${productsByBrand}" var="p">
@@ -315,10 +324,15 @@
                                                     </c:when>
                                                 </c:choose>
                                             </div>
+
+                                            <div class="product-container-btn">
+                                                <a class="btn-link" href="/user?action=buy&id=${p.getId()}">Mua hàng</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </c:forEach>
                             </c:when>
+
                             <%--Phần hiển thị search by price--%>
                             <c:when test="${requestScope['choose'] == 3}">
                                 <c:choose>
@@ -358,6 +372,10 @@
                                                                 </div>
                                                             </c:when>
                                                         </c:choose>
+                                                    </div>
+
+                                                    <div class="product-container-btn">
+                                                        <a class="btn-link" href="/user?action=buy&id=${p.getId()}">Mua hàng</a>
                                                     </div>
                                                 </div>
                                             </div>
