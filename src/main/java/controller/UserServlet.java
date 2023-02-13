@@ -35,6 +35,10 @@ public class UserServlet extends HttpServlet {
                 break;
             case "showBuy":
                 showBuy(request, response);
+                break;
+            case "checkOut":
+                checkOut(request, response);
+                break;
             default:
                 showProduct(request, response);
                 break;
@@ -166,23 +170,23 @@ public class UserServlet extends HttpServlet {
         } else {
             cart = new Cart();
         }
-        String tNum = request.getParameter("num");
+//        String tNum = request.getParameter("num");
         String tId = request.getParameter("id");
-        int num, id;
+        int id;
         try {
-            num = Integer.parseInt(tNum);
+//            num = Integer.parseInt(tNum);
             id = Integer.parseInt(tId);
             ProductDAO pdb = new ProductDAO();
             Product p = pdb.selectById(id);
             double price = p.getPrice() * 1;
-            Item t = new Item(p, num, price);
+            Item t = new Item(p, price);
             cart.addItem(t);
         } catch (NumberFormatException e) {
-            num = 1;
+            e.getStackTrace();
         }
         List<Item> list = cart.getItems();
-        session.setAttribute("cart", cart);
-        session.setAttribute("size", list.size());
+        session.setAttribute("cart", list);
+//        session.setAttribute("size", list.size());
         request.getRequestDispatcher("cart.jsp").forward(request, response);
     }
 
@@ -201,17 +205,17 @@ public class UserServlet extends HttpServlet {
         }else {
             cart = new Cart();
         }
-        Customer account = null;
+//        Customer account = null;
         Object a = session.getAttribute("account");
-        if (a != null){
-            account = (Customer) a;
-            OrderDAO odb = new OrderDAO();
-            odb.addOrder(account, cart);
-            session.removeAttribute("cart");
-            session.setAttribute("size", 0);
-            response.sendRedirect("cart.jsp");
-        } else {
-            response.sendRedirect("login.jsp");
-        }
+        Customer account = (Customer) a;
+        OrderDAO odb = new OrderDAO();
+        odb.addOrder(account, cart);
+        session.removeAttribute("cart");
+        session.setAttribute("size", 0);
+        response.sendRedirect("cart.jsp");
+//        if (a != null){
+//        } else {
+//            response.sendRedirect("user");
+//        }
     }
 }

@@ -588,3 +588,8 @@
     font-size: 1.6rem;
     color: var(--text-color);
 }
+
+.header__text {
+    text-decoration: none;
+    color: var(--white-color);
+}

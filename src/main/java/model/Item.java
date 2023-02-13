@@ -8,9 +8,9 @@ public class Item {
     public Item() {
     }
 
-    public Item(Product product, int quantity, double price) {
+    public Item(Product product, double price) {
         this.product = product;
-        this.quantity = quantity;
+//        this.quantity = quantity;
         this.price = price;
     }
 

@@ -35,8 +35,8 @@ public class ProcessServlet extends HttpServlet {
                 ProductDAO pdb = new ProductDAO();
                 Product p = pdb.selectById(id);
                 double price = p.getPrice() * 1;
-                Item t = new Item(p, num, price);
-                cart.addItem(t);
+//                Item t = new Item(p, num, price);
+//                cart.addItem(t);
             }
         }   catch (NumberFormatException e){
             System.out.println(e);
