@@ -3,6 +3,8 @@ package controller;
 import dao.BrandDAO;
 import dao.ProductDAO;
 import model.Brand;
+import model.Cart;
+import model.Item;
 import model.Product;
 
 import javax.servlet.*;
@@ -31,7 +33,10 @@ public class UserServlet extends HttpServlet {
         }
         switch (action) {
             case "buy":
+                buyProduct(request, response);
                 break;
+            case "showBuy":
+                showBuy(request, response);
             default:
                 showProduct(request, response);
                 break;
@@ -151,5 +156,35 @@ public class UserServlet extends HttpServlet {
         request.setAttribute("productsByPrice", productsByPrice);
         RequestDispatcher rd = request.getRequestDispatcher("/user.jsp");
         rd.forward(request, response);
+    }
+
+    private void buyProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession(true);
+        Cart cart = null;
+        Object o = session.getAttribute("cart");
+//        Có rồi
+        if (o != null) {
+            cart = (Cart) o;
+        } else {
+            cart = new Cart();
+        }
+        String tNum = request.getParameter("num");
+        String tId = request.getParameter("id");
+        int num, id;
+        try {
+            num = Integer.parseInt(tNum);
+            id = Integer.parseInt(tId);
+            ProductDAO pdb = new ProductDAO();
+            Product p = pdb.selectById(id);
+            double price = p.getPrice() * 1;
+            Item t = new Item(p, num, price);
+            cart.addItem(t);
+        } catch (NumberFormatException e) {
+            num = 1;
+        }
+        List<Item> list = cart.getItems();
+        session.setAttribute("cart", cart);
+        session.setAttribute("size", list.size());
+        request.getRequestDispatcher("cart.jsp").forward(request, response);
     }
 }
