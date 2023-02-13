@@ -117,12 +117,12 @@ public class ViewServlet extends HttpServlet {
     }
     private void create(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String name = request.getParameter("name");
-        String pass = request.getParameter("pass");
+        String pass = request.getParameter("psw");
         String phone = request.getParameter("phone");
         String email = request.getParameter("email");
         String address = request.getParameter("address");
         accountDAO.create(new Account(name, pass, phone, email, address));
-        response.sendRedirect("/login");
+        response.sendRedirect("/login/login-form/login.jsp");
     }
 
     private void searchByName(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
