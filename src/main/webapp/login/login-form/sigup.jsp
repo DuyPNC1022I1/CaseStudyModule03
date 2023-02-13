@@ -8,10 +8,10 @@
     function validatePassword() {
       var pass= document.getElementById("password").value;
       var repeat = document.getElementById("pswrepeat").value;
-      if (password != pswrepeat) {
+      if (pass != repeat) {
         alert("psw-repeatPasswords do not match.");
         return false;
-      }pass
+      }
       return true;
     }
   </script>
@@ -27,10 +27,10 @@
       <input type="text" placeholder="Nhập tên đăng nhập" name="name"  required>
 
       <label for="psw"><b>Mật Khẩu</b></label>
-      <input type="password" placeholder="Nhập Mật Khẩu" name="psw" required>
+      <input type="password" placeholder="Nhập Mật Khẩu" name="psw" id="password" required>
 
       <label for="pswrepeat"><b>Nhập Lại Mật Khẩu</b></label>
-      <input type="password" placeholder="Nhập Lại Mật Khẩu" name="pswrepeat" required>
+      <input type="password" placeholder="Nhập Lại Mật Khẩu" name="pswrepeat" id="pswrepeat" required>
 
       <label for="email"><b>Email</b></label>
       <input type="text" placeholder="Nhập Email" name="email" required>
